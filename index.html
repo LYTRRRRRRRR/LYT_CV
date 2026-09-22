@@ -64,6 +64,15 @@
     padding:9px 14px !important;border-radius:8px !important;flex-shrink:0;
   }
   .nav-cta:hover{background:#333 !important;}
+  .nav-burger{
+    display:none;flex-direction:column;justify-content:center;gap:4px;
+    width:38px;height:34px;padding:0 8px;border:1.5px solid var(--ink);
+    border-radius:8px;background:transparent;cursor:pointer;flex-shrink:0;
+  }
+  .nav-burger span{display:block;height:2px;background:var(--ink);border-radius:2px;transition:all .2s;}
+  .nav-burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .nav-burger.open span:nth-child(2){opacity:0;}
+  .nav-burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
 
   /* ---------- 页面切换 ---------- */
   .page{display:none;}
@@ -184,6 +193,10 @@
   #competitions .res-btn::after{content:" \2197";}
   #research .res-btn:not(.none)::after{content:" \2197";}
   #campus .res-btn:not(.none)::after{content:" \2197";}
+  #internships .res-btn::after{content:" \2197";}
+  .res-btns.stack{flex-direction:column;}
+  .res-btns.stack .res-btn{flex:none;}
+  .fig-note{font-size:11px;color:#9a9a9a;text-align:center;line-height:1.5;}
   .res-body{min-width:0;}
   .tag{
     display:inline-block;font-size:12px;padding:2px 10px;border-radius:999px;
@@ -195,6 +208,9 @@
   .tag.time{background:#eef4ff;border-color:#c9dcff;color:#1d63c9;}
   .card ul{margin:14px 0 0 18px;color:#333;font-size:14.5px;}
   .card ul li{margin-bottom:7px;}
+  .card ul li.grp{list-style:none;margin-left:-18px;margin-top:10px;font-weight:700;color:var(--ink);}
+  .card ul li.grp b{font-weight:800;}
+  #internships .card ul li:not(.grp){margin-left:16px;}
   .card .paras{margin:14px 0 0;color:#333;font-size:14.5px;line-height:1.75;}
   .card .paras p{margin:0 0 10px;}
   .card .paras p:last-child{margin-bottom:0;}
@@ -294,17 +310,20 @@
   .edu-entry .gpa b{font-size:20px;color:var(--ink);}
   .course-cols div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dotted var(--line);padding:5px 0;}
   .course-cols em{font-style:normal;font-weight:700;color:var(--ink);}
-  .course-table{
-    width:100%;border-collapse:collapse;margin-top:16px;font-size:13.5px;
+  .course-table{margin-top:16px;font-size:13.5px;}
+  .course-group{display:flex;gap:12px;}
+  .course-group + .course-group{margin-top:0;}
+  .course-group .cat{
+    width:92px;flex-shrink:0;font-weight:800;color:var(--ink);
+    padding-top:6px;padding-bottom:4px;
   }
-  .course-table td{padding:5px 8px;text-align:left;border-bottom:1px dotted #ddd;color:#444;}
-  .course-table td.cat{
-    font-weight:800;color:var(--ink);width:92px;
-    border-bottom:none;vertical-align:top;padding-left:0;padding-top:6px;
+  .course-group + .course-group .cat{border-top:1px solid #e4e4e4;padding-top:8px;}
+  .course-group ul.courses{
+    flex:1;list-style:none;margin:0;padding:0;color:#444;
+    display:grid;grid-template-columns:1fr 1fr;gap:0 20px;
   }
-  .course-table tr.cat-end td:not(.cat){border-bottom:none;}
-  .course-table tr.cat-start td{border-top:1px solid #e4e4e4;}
-  .course-table tr.cat-start td.cat{padding-top:8px;}
+  .course-group ul.courses li{padding:5px 0;border-bottom:1px dotted #ddd;}
+  .course-group + .course-group ul.courses li:first-child{border-top:none;}
   .edu-cert{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;align-self:center;}
   .doc-thumb{
     position:relative;width:100%;max-width:200px;height:158px;
@@ -374,6 +393,8 @@
     position:absolute;top:10px;right:10px;background:var(--ink);color:#fff;
     font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.08em;
   }
+  .note-link{display:block;color:inherit;text-decoration:none;cursor:pointer;}
+  .note-link:hover h4{color:#000;text-decoration:underline;text-underline-offset:3px;}
   .note-card h4{font-size:14px;font-weight:800;padding:12px 14px 3px;line-height:1.4;letter-spacing:-.01em;}
   .note-card h4::after{content:" \2197";font-size:12px;color:#8a8a8a;font-weight:700;}
   .note-card p{font-size:12px;color:#8a8a8a;padding:0 14px 14px;line-height:1.55;}
@@ -442,6 +463,15 @@
     .edu-grid,.skill-grid,.eval-grid,.honor-cols{grid-template-columns:1fr;}
     .foot-grid{grid-template-columns:1fr;}
     nav.menu{display:none;}
+    nav.menu.open{
+      display:flex;flex-direction:column;align-items:stretch;gap:2px;
+      position:absolute;top:64px;left:0;right:0;
+      background:rgba(255,255,255,.98);backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);padding:10px 16px 14px;
+      box-shadow:0 12px 24px rgba(0,0,0,.08);
+    }
+    nav.menu.open a{padding:10px 12px;font-size:14.5px;}
+    .nav-burger{display:flex;order:-1;}
     .hero-bottom{grid-template-columns:1fr;row-gap:26px;justify-items:center;}
     .hero-photo{order:-1;margin-top:0;margin-bottom:0;}
     .hero-photo img{width:min(240px,60vw);}
@@ -460,8 +490,11 @@
     .edu-card:nth-child(odd),.edu-card:nth-child(even){transform:translateY(36px);}
     .edu-card + .edu-card{margin-top:16px;}
     .edu-card::before,.edu-card::after{display:none;}
-    .edu-cert{flex-direction:row;justify-content:flex-start;align-items:stretch;}
-    .doc-thumb{max-width:160px;height:130px;flex-shrink:0;}
+    .course-cols{grid-template-columns:1fr;gap:0;}
+    .course-group{display:grid;grid-template-columns:92px 1fr;gap:0 14px;}
+    .course-group ul.courses{grid-template-columns:1fr;gap:0;}
+    .edu-cert{flex-direction:column;justify-content:center;align-items:center;}
+    .doc-thumb{max-width:230px;height:auto;flex-shrink:0;}
     .car-btn{display:none;}
   }
 </style>
@@ -473,6 +506,7 @@
   <div class="wrap nav">
     <div class="logo en-font" onclick="go('home')">Yuting<span class="dot"><i>.</i></span></div>
     <div class="nav-right">
+      <button class="nav-burger" id="navBurger" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
       <nav class="menu" id="menu">
         <a data-page="home" class="active" onclick="go('home')"><span class="zh">首页</span><span class="en">Home</span></a>
         <a data-page="education" onclick="go('education')"><span class="zh">教育背景</span><span class="en">Education</span></a>
@@ -615,30 +649,16 @@
               <span class="zh">综合绩点</span><span class="en">Overall GPA</span> <b>3.986</b> / 4.5
               <span class="tag hl"><span class="zh">排名 1/66</span><span class="en">Rank 1/66</span></span>
             </div>
-            <table class="course-table zh">
-              <tr><td class="cat" rowspan="5">数学类</td><td>数学分析</td><td>高等代数</td></tr>
-              <tr><td>运筹学</td><td>几何分析</td></tr>
-              <tr><td>概率论</td><td>数理统计</td></tr>
-              <tr><td>常微分方程</td><td>随机过程论</td></tr>
-              <tr class="cat-end"><td>复变函数与积分变换</td><td>数学模型</td></tr>
-              <tr class="cat-start"><td class="cat" rowspan="3">统计类</td><td>多元统计分析</td><td>统计软件（SAS）</td></tr>
-              <tr><td>统计学原理</td><td>实验设计</td></tr>
-              <tr class="cat-end"><td>抽样调查</td><td>非参数统计</td></tr>
-              <tr class="cat-start"><td class="cat" rowspan="2">经济学</td><td>计量经济学</td><td>寿险精算理论</td></tr>
-              <tr class="cat-end"><td>西方经济学</td><td></td></tr>
-            </table>
-            <table class="course-table en">
-              <tr><td class="cat" rowspan="5">Mathematics</td><td>Mathematical Analysis</td><td>Advanced Algebra</td></tr>
-              <tr><td>Operations Research</td><td>Geometric Analysis</td></tr>
-              <tr><td>Probability Theory</td><td>Mathematical Statistics</td></tr>
-              <tr><td>Ordinary Differential Equations</td><td>Stochastic Processes</td></tr>
-              <tr class="cat-end"><td>Complex Functions &amp; Integral Transforms</td><td>Mathematical Modeling</td></tr>
-              <tr class="cat-start"><td class="cat" rowspan="3">Statistics</td><td>Multivariate Statistical Analysis</td><td>Statistical Software (SAS)</td></tr>
-              <tr><td>Principles of Statistics</td><td>Design of Experiments</td></tr>
-              <tr class="cat-end"><td>Sampling Surveys</td><td>Nonparametric Statistics</td></tr>
-              <tr class="cat-start"><td class="cat" rowspan="2">Economics</td><td>Econometrics</td><td>Life Insurance Actuarial Theory</td></tr>
-              <tr class="cat-end"><td>Western Economics</td><td></td></tr>
-            </table>
+            <div class="course-table zh">
+            <div class="course-group"><div class="cat">数学类</div><ul class="courses"><li>数学分析</li><li>高等代数</li><li>运筹学</li><li>几何分析</li><li>概率论</li><li>数理统计</li><li>常微分方程</li><li>随机过程论</li><li>复变函数与积分变换</li><li>数学模型</li></ul></div>
+            <div class="course-group"><div class="cat">统计类</div><ul class="courses"><li>多元统计分析</li><li>统计软件（SAS）</li><li>统计学原理</li><li>实验设计</li><li>抽样调查</li><li>非参数统计</li></ul></div>
+            <div class="course-group"><div class="cat">经济学</div><ul class="courses"><li>计量经济学</li><li>寿险精算理论</li><li>西方经济学</li></ul></div>
+            </div>
+            <div class="course-table en">
+            <div class="course-group"><div class="cat">Mathematics</div><ul class="courses"><li>Mathematical Analysis</li><li>Advanced Algebra</li><li>Operations Research</li><li>Geometric Analysis</li><li>Probability Theory</li><li>Mathematical Statistics</li><li>Ordinary Differential Equations</li><li>Stochastic Processes</li><li>Complex Functions &amp; Integral Transforms</li><li>Mathematical Modeling</li></ul></div>
+            <div class="course-group"><div class="cat">Statistics</div><ul class="courses"><li>Multivariate Statistical Analysis</li><li>Statistical Software (SAS)</li><li>Principles of Statistics</li><li>Design of Experiments</li><li>Sampling Surveys</li><li>Nonparametric Statistics</li></ul></div>
+            <div class="course-group"><div class="cat">Economics</div><ul class="courses"><li>Econometrics</li><li>Life Insurance Actuarial Theory</li><li>Western Economics</li></ul></div>
+            </div>
             <div style="margin-top:12px;font-size:13.5px;color:#444;">
               <span class="zh"><b>毕业论文：</b>《碳中和目标下河北省碳排放影响因素分析》—— 多元回归模型、PSO-BP 神经网络</span>
               <span class="en"><b>Thesis:</b> "Analysis of Carbon Emission Influencing Factors in Hebei Province under Carbon Neutrality Goals" — multiple regression &amp; PSO-BP neural networks</span>
@@ -662,45 +682,45 @@
     <div class="carousel-wrap">
       <button class="car-btn prev" onclick="slideCar(this,-1)" aria-label="prev">‹</button>
       <div class="carousel">
-        <a class="note-card" href="https://365.kdocs.cn/l/co556LvfT6Ay" target="_blank" rel="noopener">
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-1.png" alt="博弈论与信息经济学"></span>
-          <h4><span class="zh">教材</span><span class="en">Book</span></h4>
+          <a class="note-link" href="https://365.kdocs.cn/l/co556LvfT6Ay" target="_blank" rel="noopener"><h4><span class="zh">教材</span><span class="en">Book</span></h4></a>
           <p><i><span class="zh">博弈论与信息经济学</span><span class="en">Game Theory and Information Economics</span></i></p>
-        </a>
-        <a class="note-card" href="https://365.kdocs.cn/l/cjtSXtfGtedT" target="_blank" rel="noopener">
+        </div>
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-2.png" alt="博弈论与信息经济学 学习笔记"></span>
-          <h4><span class="zh">笔记</span><span class="en">Note</span></h4>
+          <a class="note-link" href="https://365.kdocs.cn/l/cjtSXtfGtedT" target="_blank" rel="noopener"><h4><span class="zh">笔记</span><span class="en">Note</span></h4></a>
           <p><i><span class="zh">博弈论与信息经济学（学习笔记）</span><span class="en">Game Theory and Information Economics</span></i></p>
-        </a>
-        <a class="note-card" href="https://365.kdocs.cn/l/ccEfFqg0f9FU" target="_blank" rel="noopener">
+        </div>
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-3.png" alt="Introduction to Probability Model"></span>
-          <h4><span class="zh">教材 | Sheldon M.Ross</span><span class="en">Book | Sheldon M.Ross</span></h4>
+          <a class="note-link" href="https://365.kdocs.cn/l/ccEfFqg0f9FU" target="_blank" rel="noopener"><h4><span class="zh">教材 | Sheldon M. Ross</span><span class="en">Book | Sheldon M. Ross</span></h4></a>
           <p><i>Introduction to Probability Model</i></p>
-        </a>
-        <a class="note-card" href="https://365.kdocs.cn/l/cooGuKrNHPj5" target="_blank" rel="noopener">
+        </div>
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-4.png" alt="条件数学期望和条件方差的性质和应用"></span>
-          <h4><span class="zh">笔记 | 条件数学期望和条件方差的性质和应用</span><span class="en">Note | Properties and Applications of Conditional Mathematical Expectation and Variance</span></h4>
+          <a class="note-link" href="https://365.kdocs.cn/l/cooGuKrNHPj5" target="_blank" rel="noopener"><h4><span class="zh">笔记 | 条件数学期望和条件方差的性质和应用</span><span class="en">Note | Properties and Applications of Conditional Mathematical Expectation and Variance</span></h4></a>
           <p><i>Introduction to Probability Model</i></p>
-        </a>
-        <a class="note-card" href="https://365.kdocs.cn/l/cjxehxdxioOJ" target="_blank" rel="noopener">
+        </div>
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-5.png" alt="Introduction to Stochastic Dynamic Programming"></span>
-          <h4><span class="zh">教材 | Sheldon M.Ross</span><span class="en">Book | Sheldon M.Ross</span></h4>
+          <a class="note-link" href="https://365.kdocs.cn/l/cjxehxdxioOJ" target="_blank" rel="noopener"><h4><span class="zh">教材 | Sheldon M. Ross</span><span class="en">Book | Sheldon M. Ross</span></h4></a>
           <p><i>Introduction to Stochastic Dynamic Programming</i></p>
-        </a>
-        <a class="note-card" href="https://365.kdocs.cn/l/coPvx6gbAles" target="_blank" rel="noopener">
+        </div>
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-6.png" alt="Dynamic Programming & Reinforcement Learning Note"></span>
-          <h4><span class="zh">笔记</span><span class="en">Note</span></h4>
+          <a class="note-link" href="https://365.kdocs.cn/l/coPvx6gbAles" target="_blank" rel="noopener"><h4><span class="zh">笔记</span><span class="en">Note</span></h4></a>
           <p><i><span class="zh">动态规划&amp;强化学习</span><span class="en">Dynamic Programming &amp; Reinforcement Learning</span></i></p>
-        </a>
-        <a class="note-card" href="https://365.kdocs.cn/l/csZmmFUED7BJ" target="_blank" rel="noopener">
+        </div>
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-7.png" alt="Example: Goofspiel"></span>
-          <h4><span class="zh">例题整理 | Goofspiel</span><span class="en">Example | Goofspiel</span></h4>
+          <a class="note-link" href="https://365.kdocs.cn/l/csZmmFUED7BJ" target="_blank" rel="noopener"><h4><span class="zh">例题整理 | Goofspiel</span><span class="en">Example | Goofspiel</span></h4></a>
           <p><i><span class="zh">动态规划&amp;强化学习</span><span class="en">Dynamic Programming &amp; Reinforcement Learning</span></i></p>
-        </a>
-        <a class="note-card" href="https://365.kdocs.cn/l/cb3bswQfIMNg" target="_blank" rel="noopener">
+        </div>
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-8.png" alt="几何思维解数学题"></span>
-          <h4><span class="zh">笔记 | 几何思维解题</span><span class="en">Note | Solve Mathematical Problems Using Geometric Thinking</span></h4>          <p><i><span class="zh">动态规划&amp;强化学习</span><span class="en">Dynamic Programming &amp; Reinforcement Learning</span></i></p>
-        </a>
+          <a class="note-link" href="https://365.kdocs.cn/l/cb3bswQfIMNg" target="_blank" rel="noopener"><h4><span class="zh">笔记 | 几何思维解题</span><span class="en">Note | Solve Mathematical Problems Using Geometric Thinking</span></h4></a>          <p><i><span class="zh">动态规划&amp;强化学习</span><span class="en">Dynamic Programming &amp; Reinforcement Learning</span></i></p>
+        </div>
       </div>
       <button class="car-btn next" onclick="slideCar(this,1)" aria-label="next">›</button>
     </div>
@@ -710,31 +730,31 @@
     <div class="carousel-wrap">
       <button class="car-btn prev" onclick="slideCar(this,-1)" aria-label="prev">‹</button>
       <div class="carousel">
-        <a class="note-card" href="https://365.kdocs.cn/l/cfoguvQqmhRx" target="_blank" rel="noopener">
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/paper-1.png" alt="Efficient Inaccuracy 笔记"><span class="nt-tag">UTD24</span></span>
-          <h4>Efficient Inaccuracy User-Generated Information Sharing in a Queue</h4>
+          <a class="note-link" href="https://365.kdocs.cn/l/cfoguvQqmhRx" target="_blank" rel="noopener"><h4>Efficient Inaccuracy User-Generated Information Sharing in a Queue</h4></a>
           <p><span class="zh">Weekly Seminar · 论文研读</span><span class="en">Weekly Seminar · Paper Reading</span></p>
-        </a>
-        <a class="note-card" href="https://365.kdocs.cn/l/cgHHqnrMNzZz" target="_blank" rel="noopener">
+        </div>
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/paper-2.png" alt="Blockchain Adoption 笔记"><span class="nt-tag">POMS</span></span>
-          <h4>Blockchain Adoption for Combating Deceptive Counterfeits</h4>
+          <a class="note-link" href="https://365.kdocs.cn/l/cgHHqnrMNzZz" target="_blank" rel="noopener"><h4>Blockchain Adoption for Combating Deceptive Counterfeits</h4></a>
           <p><span class="zh">Weekly Seminar · 论文研读</span><span class="en">Weekly Seminar · Paper Reading</span></p>
-        </a>
-        <a class="note-card" href="https://365.kdocs.cn/l/clHUEQGfjC8o" target="_blank" rel="noopener">
+        </div>
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/paper-3.png" alt="Large-Scale Inventory Optimization 笔记"><span class="nt-tag">UTD24</span></span>
-          <h4>Large-Scale Inventory Optimization A Recurrent Neural Networks-Inspired Simulation Approach</h4>
+          <a class="note-link" href="https://365.kdocs.cn/l/clHUEQGfjC8o" target="_blank" rel="noopener"><h4>Large-Scale Inventory Optimization A Recurrent Neural Networks-Inspired Simulation Approach</h4></a>
           <p><span class="zh">Weekly Seminar · 论文研读</span><span class="en">Weekly Seminar · Paper Reading</span></p>
-        </a>
-        <a class="note-card" href="https://365.kdocs.cn/l/cqpQYkr0jx9P" target="_blank" rel="noopener">
+        </div>
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/paper-4.png" alt="Disclosure Accessibility 笔记"><span class="nt-tag">UTD24</span></span>
-          <h4>The Usefulness and Limited Supply of Disclosure Accessibility</h4>
+          <a class="note-link" href="https://365.kdocs.cn/l/cqpQYkr0jx9P" target="_blank" rel="noopener"><h4>The Usefulness and Limited Supply of Disclosure Accessibility</h4></a>
           <p><span class="zh">Weekly Seminar · 论文研读</span><span class="en">Weekly Seminar · Paper Reading</span></p>
-        </a>
-        <a class="note-card" href="https://365.kdocs.cn/l/clGlcxfgD3iq" target="_blank" rel="noopener">
+        </div>
+        <div class="note-card">
           <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/paper-5.png" alt="Committed Versus Contingent Pricing 笔记"><span class="nt-tag">POMS</span></span>
-          <h4>Committed Versus Contingent Pricing Under Competition</h4>
+          <a class="note-link" href="https://365.kdocs.cn/l/clGlcxfgD3iq" target="_blank" rel="noopener"><h4>Committed Versus Contingent Pricing Under Competition</h4></a>
           <p><span class="zh">Weekly Seminar · 论文研读</span><span class="en">Weekly Seminar · Paper Reading</span></p>
-        </a>
+        </div>
       </div>
       <button class="car-btn next" onclick="slideCar(this,1)" aria-label="next">›</button>
     </div>
@@ -800,9 +820,9 @@
       <div class="role-line"><span class="tag hl"><span class="zh">独立研究</span><span class="en">Independent Research</span></span><span class="tag time">2025 – 2026</span></div>
       <ul>
         <li><span class="zh"><b>研究问题：</b>在 n 元集合族中，任意两集合交集恰为 1 且任意元素恰出现 n 次时，求集合数与元素数及其构造方法。</span>
-        <span class="en"><b>Problem:</b> For an n-element family where any two sets intersect in exactly one element and each element appears exactly n times, determine the number of sets/elements and a construction.</span></li>
+        <span class="en"><b>Problem:</b> For a finite set family in which any two sets intersect in exactly one element and each element belongs to exactly n sets, determine the numbers of sets and elements, and give a construction.</span></li>
         <li><span class="zh"><b>核心结论：</b>最大集合数与元素数相等，均为 n(n−1)+1。</span>
-        <span class="en"><b>Result:</b> The maximum number of sets equals the number of elements, both n(n−1)+1.</span></li>
+        <span class="en"><b>Result:</b> The maximum number of sets equals the number of elements, both being n(n−1)+1.</span></li>
         <li><span class="zh"><b>构造方法：</b>元素视为点、集合视为直线，把集合相交问题转化为二维平面的直线相交问题。</span>
         <span class="en"><b>Construction:</b> View elements as points and sets as lines, reducing set intersection to line intersection in the plane.</span></li>
       </ul>
@@ -826,9 +846,9 @@
       <div class="role-line"><span class="tag hl"><span class="zh">第一作者</span><span class="en">1st Author</span></span><span class="tag time">2025</span><span class="tag prize"><span class="zh">已录用</span><span class="en">Accepted</span></span></div>
       <ul>
         <li><span class="zh"><b>研究问题：</b>双寡头竞争市场中，高、低质量企业如何在"限量供应"模式下制定质量披露与产量策略，以传递质量信号并实现利润最大化。</span>
-        <span class="en"><b>Problem:</b> In a duopoly, how do high- and low-quality firms set quality-disclosure and output strategies under limited supply to signal quality and maximize profit.</span></li>
+        <span class="en"><b>Problem:</b> In a duopoly, how do high- and low-quality firms set quality-disclosure and output strategies under limited supply to signal quality and maximize profit?</span></li>
         <li><span class="zh"><b>模型与方法：</b>两阶段动态博弈模型 + 库诺特竞争 + 精炼贝叶斯均衡框架，逆向归纳求解分离均衡与最优定产策略。</span>
-        <span class="en"><b>Model &amp; Methods:</b> Two-stage dynamic game with Cournot competition under perfect Bayesian equilibrium; backward induction yields separating equilibria and optimal output strategies.</span></li>
+        <span class="en"><b>Model &amp; Methods:</b> Two-stage dynamic game with Cournot competition, solved for perfect Bayesian equilibrium; backward induction yields separating equilibria and optimal output strategies.</span></li>
         <li><span class="zh"><b>核心发现：</b>存在低产与高产两种分离均衡，成本结构决定均衡选择；高成本企业倾向主动披露质量，低成本企业选择不披露，披露与定产策略需协同优化。</span>
         <span class="en"><b>Findings:</b> Two separating equilibria (low/high output) exist, selected by cost structure; high-cost firms disclose quality while low-cost firms stay silent; disclosure and output must be jointly optimized.</span></li>
         <li><span class="zh"><b>个人贡献：</b>独立完成模型推导、均衡求解、数值仿真与论文撰写。</span>
@@ -931,9 +951,9 @@
       </div>
       <ul>
         <li><span class="zh"><b>剧情设计：</b>参考《国家宝藏》等 10 余份文献，主导剧本创作，累计修改 6 版剧本，确保故事完整性与感染力。</span>
-        <span class="en"><b>Story:</b> Led scriptwriting based on 10+ references incl. <i>National Treasure</i>, through 6 revisions to ensure narrative completeness and appeal.</span></li>
+        <span class="en"><b>Story:</b> Led scriptwriting based on 10+ references including <i>National Treasure</i>, through 6 revisions to ensure narrative completeness and appeal.</span></li>
         <li><span class="zh"><b>动画制作：</b>使用 Procreate 逐帧绘制 300 余帧素材，完成全片 80% 以上画面；运用剪映剪辑，作品时长 3 分 40 秒。</span>
-        <span class="en"><b>Animation:</b> Drew 300+ frames frame-by-frame in Procreate (80%+ of the film); edited in Jianying, 3 min 40 s total.</span></li>
+        <span class="en"><b>Animation:</b> Drew 300+ frames frame-by-frame in Procreate (80%+ of the film); edited in CapCut (Jianying), 3 min 40 s total.</span></li>
       </ul>
         </div>
       </div>
@@ -957,7 +977,7 @@
       <div class="role-line">
         <span class="tag hl"><span class="zh">项目负责人</span><span class="en">Project Leader</span></span>
         <span class="tag time">2023.04 – 2023.06</span>
-        <span class="tag prize"><span class="zh">第九届全国大学生统计建模大赛</span><span class="en">9th National Statistical Modeling Competition</span></span><span class="tag gold"><span class="zh">全国三等奖</span><span class="en">National Third Prize</span></span>
+        <span class="tag prize"><span class="zh">第九届全国大学生统计建模大赛</span><span class="en">9th National Statistical Modeling Contest for College Students</span></span><span class="tag gold"><span class="zh">全国三等奖</span><span class="en">National Third Prize</span></span>
       </div>
       <div class="paras">
         <p><span class="zh">本项目使用统计建模大赛官方数据库与世界银行数据库，整合 1990–2021 年的二氧化碳排放量、经济发展、人口规模、消费水平、能源生产与消费相关指标，建立面板数据。从时序性、相关性的角度，分析影响二氧化碳排放量的多种因素及其影响程度。结合实际分析后，发现选取的指标均与二氧化碳排放密切相关，可以作为深度学习模型的输入变量。</span>
@@ -1026,7 +1046,7 @@
       </div>
       <ul>
         <li><span class="zh"><b>销售方案制定与执行：</b>主导销售方案撰写，提出社群接龙、云养成等 6 种模式；与团队共赴承德银窝沟乡来太沟村实地考察，完成 1 场西红柿专场直播；辅导当地种植户掌握直播操作与话术，使其后续可独立开播。</span>
-        <span class="en"><b>Sales plan &amp; execution:</b> Led the sales plan with 6 models incl. community group-buying and cloud-farming; field-visited Laitaigou Village (Yinwogou Township, Chengde) with the team and hosted a persimmon livestream; coached local farmers in streaming skills so they could later go live independently.</span></li>
+        <span class="en"><b>Sales plan &amp; execution:</b> Led the sales plan with 6 models including community group-buying and cloud-farming; field-visited Laitaigou Village (Yinwogou Township, Chengde) with the team and hosted a persimmon livestream; coached local farmers in streaming skills so they could later go live independently.</span></li>
       </ul>
         </div>
       </div>
@@ -1047,11 +1067,11 @@
       <div class="role-line">
         <span class="tag"><span class="zh">核心成员</span><span class="en">Core Member</span></span>
         <span class="tag time">2023.05 – 2023.06</span>
-        <span class="tag prize"><span class="zh">第八届全国大学生生命科学竞赛</span><span class="en">8th National Life Sciences Competition</span></span><span class="tag gold"><span class="zh">全国三等奖</span><span class="en">National Third Prize</span></span>
+        <span class="tag prize"><span class="zh">第八届全国大学生生命科学竞赛</span><span class="en">8th National Undergraduate Life Sciences Contest</span></span><span class="tag gold"><span class="zh">全国三等奖</span><span class="en">National Third Prize</span></span>
       </div>
       <ul>
         <li><span class="zh"><b>答辩视频制作：</b>运用剪映制作汇报视频，独立完成人像抠图、多轨道视频剪辑。</span>
-        <span class="en"><b>Defense video:</b> Produced the presentation video in Jianying, independently handling portrait cutout and multi-track editing.</span></li>
+        <span class="en"><b>Defense video:</b> Produced the presentation video in CapCut (Jianying), independently handling portrait cutout and multi-track editing.</span></li>
       </ul>
         </div>
       </div>
@@ -1105,7 +1125,7 @@
       </div>
       <ul>
         <li><span class="zh"><b>数据采集与预处理：</b>利用 Python 爬虫抓取学习通在多平台应用商店的 1 万条在线评论，完成去重、去噪、Jieba 分词及 Wordcloud 词云可视化。</span>
-        <span class="en"><b>Data collection &amp; preprocessing:</b> Used Python crawlers to scrape 10,000 online reviews of Xuexitong from app stores across platforms, with deduplication, denoising, Jieba segmentation and WordCloud visualization.</span></li>
+        <span class="en"><b>Data collection &amp; preprocessing:</b> Used Python crawlers to scrape 10,000 online reviews of Xuexitong (Chaoxing Learning) from app stores across platforms, with deduplication, denoising, Jieba segmentation and WordCloud visualization.</span></li>
         <li><span class="zh"><b>文本挖掘与聚类：</b>采用 TF-IDF 提取前 500 个特征词，通过 Word2vec 将词汇向量化，结合 Canopy+K-means 算法对特征词聚类，归纳出六大影响因素维度。</span>
         <span class="en"><b>Text mining &amp; clustering:</b> Extracted the top 500 feature words via TF-IDF, vectorized them with Word2vec, and clustered the terms with the Canopy+K-means algorithm, summarizing six major influencing-factor dimensions.</span></li>
         <li><span class="zh"><b>模型构建与验证：</b>基于 CCSI 与 Fornell 模型构建用户忠诚度影响因素模型，设计并回收有效问卷 175 份，通过信效度检验与结构方程模型验证假设。</span>
@@ -1158,6 +1178,13 @@
       <div class="res-layout">
         <div class="res-figure">
           <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/intern-1.png" alt="字节跳动实习证明"></div>
+          <div class="fig-note"><span class="zh">仅 ByteDance 员工可访问</span><span class="en en-font">ByteDance employees only</span></div>
+          <div class="res-btns stack">
+            <a class="res-btn" href="https://bytedance.my.larkoffice.com/app/B3IgbTCY6a2bcNsfNxZmnGwbyEf?mode=edit&pageId=pgeu9UVgC81jLPFP" target="_blank" rel="noopener">Creative Analysis</a>
+            <a class="res-btn" href="https://bytedance.my.larkoffice.com/base/PlEZb3ALYaUjXfsGeVlmP74jyob" target="_blank" rel="noopener">Creative Dataset</a>
+            <a class="res-btn" href="https://mmm.tiktok-row.net/analytics/biportal/dashboard/detail/32596" target="_blank" rel="noopener">Team Dashboard</a>
+            <a class="res-btn" href="https://mmm.tiktok-row.net/analytics/biportal/dashboard/detail/32106?sheetId=73717" target="_blank" rel="noopener">Client SOV</a>
+          </div>
         </div>
         <div class="res-body">
       <div class="card-top">
@@ -1165,16 +1192,30 @@
       </div>
       <div class="role-line"><span class="tag hl"><span class="zh">数据科学实习生</span><span class="en">Data Science Intern</span></span><span class="tag time">2026.06 – 2026.09</span></div>
       <ul>
-        <li><span class="zh"><b>数据看板搭建：</b>BI 工具独立搭建团队数据看板，服务 20 余人团队；AI 生成图表智能分析报告，配置监控与简报自动推送，形成"指标追踪—异常发现—结果触达"分析闭环。</span>
-        <span class="en"><b>Dashboards:</b> Independently built BI dashboards serving a 20+ person team; AI-generated chart analysis reports with automated monitoring and briefings, closing the loop of "tracking — anomaly detection — delivery".</span></li>
-        <li><span class="zh"><b>Magibook 建设：</b>从 0 到 1 搭建 Magibook 数据分析项目，支持 5 个子团队；编写 SQL/Python 脚本沉淀可复用分析流程，工作时间从 3 小时缩短至 1 小时。</span>
-        <span class="en"><b>Magibook:</b> Built the Magibook analytics project from 0 to 1 for 5 sub-teams; SQL/Python pipelines turned ad-hoc requests into reusable flows, cutting processing time from 3 hours to 1.</span></li>
-        <li><span class="zh"><b>业务运营支持：</b>服务携程、Agoda、Grab 等重点客户，覆盖 80+ 广告账户，支持千万美元级订单日常运营；每月输出 Agoda 竞品 SOV 分析。</span>
-        <span class="en"><b>Operations:</b> Served key clients incl. Trip.com, Agoda, and Grab across 80+ ad accounts, supporting daily operations of multimillion-dollar orders; monthly Agoda competitor SOV reports.</span></li>
-        <li><span class="zh"><b>素材分析（Viu）：</b>整理 312 条创意素材及转化率指标搭建数据库，构建 3 种分析框架与 Top-N 选优规则，产出"强冲突/悬念式 Hook + 本地化剧情"等可复用洞察，并以多维表格 + APP 实现产品化交付。</span>
-        <span class="en"><b>Creative analytics (Viu):</b> Built a database of 312 creatives with conversion metrics, designed 3 analytical frameworks and Top-N rules, surfaced reusable insights (strong-conflict/suspense hooks, localized plots), delivered via Airtable-style tables + app.</span></li>
-        <li><span class="zh"><b>AI 提效：</b>独立设计团队机器人（会议总结、群聊转发、To-Do 创建），将重复性工作转化为可复用 AI 工作流并撰写操作手册。</span>
-        <span class="en"><b>AI efficiency:</b> Designed a team chatbot (meeting summaries, group forwarding, to-do creation), converted repetitive work into reusable AI workflows, and wrote the user manual.</span></li>
+        <li class="grp"><span class="zh">1.&nbsp;&nbsp;数据分析建设</span><span class="en">1.&nbsp;&nbsp;Data Analytics Development</span></li>
+        <li><span class="zh"><b>数据看板搭建：</b>运用 BI 工具独立搭建团队数据看板，服务 20 余人的团队；通过 AI 工具编写 Prompt 指令，生成图表智能分析报告，并配置数据监控与数据简报自动推送功能，形成"指标追踪—异常发现—结果触达"的分析闭环。</span>
+        <span class="en"><b>Dashboards:</b> Independently built team BI dashboards serving 20+ members; authored AI prompts to generate intelligent chart analysis reports, with automated data monitoring and briefing push, forming an analysis loop of "metric tracking — anomaly detection — result delivery".</span></li>
+        <li><span class="zh"><b>Magibook 建设：</b>从 0 到 1 搭建 Magibook 数据分析项目，支持 5 个子团队的使用；编写 SQL 和 Python 脚本，构建目标数据集，将分散的数据处理需求沉淀为可复用的分析流程，将工作时间从 3 小时缩短至 1 小时。</span>
+        <span class="en"><b>Magibook:</b> Built the Magibook analytics project from 0 to 1, serving 5 sub-teams; wrote SQL and Python scripts to build target datasets and consolidated scattered data-processing needs into reusable pipelines, cutting processing time from 3 hours to 1.</span></li>
+        <li class="grp"><span class="zh">2.&nbsp;&nbsp;业务运营支持</span><span class="en">2.&nbsp;&nbsp;Business Operations Support</span></li>
+        <li><span class="zh"><b>东南亚业务经营支持：</b>服务携程、Agoda、Grab 等重点客户，覆盖 80+ 个广告账户，支持千万美元级订单的日常运营。</span>
+        <span class="en"><b>SEA operations:</b> Served key clients including Trip.com, Agoda and Grab across 80+ ad accounts, supporting daily operations of multimillion-dollar orders.</span></li>
+        <li><span class="zh"><b>Agoda 账户数据支持：</b>持续响应 Agoda 的常态化数据需求，每月输出竞品 SOV 分析，帮助客户了解其市场份额。</span>
+        <span class="en"><b>Agoda data support:</b> Continuously responded to Agoda's regular data requests and delivered monthly competitor SOV reports, helping the client understand its market share.</span></li>
+        <li class="grp"><span class="zh">3.&nbsp;&nbsp;东南亚第二大流媒体平台 Viu 的素材分析</span><span class="en">3.&nbsp;&nbsp;Creative Analytics for Viu, the Second-Largest Streaming Platform in SEA</span></li>
+        <li><span class="zh"><b>数据底座：</b>整理出 312 条创意素材及其转化率指标，利用多维表格搭建数据库。</span>
+        <span class="en"><b>Data foundation:</b> Compiled 312 creatives with their conversion metrics into a database built on Lark Base.</span></li>
+        <li><span class="zh"><b>分析方法：</b>从转化目标、OS、剧目题材、剧目名称 4 个角度出发，构建 3 种分析框架，并设计出 Top-N 选优规则。</span>
+        <span class="en"><b>Methodology:</b> Built 3 analytical frameworks from 4 perspectives — conversion goal, OS, drama genre and title — and designed Top-N selection rules.</span></li>
+        <li><span class="zh"><b>分析结果：</b>Android 转化率优于 iOS，高转化率素材普遍采用强冲突或悬念式 Hook、人物冲突特写及本地化剧情。</span>
+        <span class="en"><b>Findings:</b> Android outperformed iOS in conversion; top-performing creatives commonly adopted strong-conflict or suspense hooks, character-conflict close-ups and localized plots.</span></li>
+        <li><span class="zh"><b>产品化交付：</b>使用多维表格管理数据，以 APP 承载分析结果，实现二者的数据联动，呈现出可交互的分析结果。</span>
+        <span class="en"><b>Productized delivery:</b> Managed data in Lark Base with an app hosting the results, linking the two for interactive, data-synced delivery.</span></li>
+        <li class="grp"><span class="zh">4.&nbsp;&nbsp;AI 提效与自动化工作流搭建</span><span class="en">4.&nbsp;&nbsp;AI Efficiency &amp; Automated Workflows</span></li>
+        <li><span class="zh"><b>机器人设计：</b>独立设计团队机器人，联动 Aime 工作空间，实现会议总结、群聊转发和 To-Do List 创建等完整流程。</span>
+        <span class="en"><b>Chatbot:</b> Independently designed a team bot integrated with the Aime workspace, covering meeting summaries, group-chat forwarding and To-Do list creation.</span></li>
+        <li><span class="zh"><b>工作流搭建：</b>将重复性工作转化为可复用的 AI 工作流，如素材分析、问卷收集、任务跟踪等，并独立撰写操作手册。</span>
+        <span class="en"><b>Workflows:</b> Turned repetitive tasks into reusable AI workflows (creative analysis, survey collection, task tracking) and independently wrote the user manual.</span></li>
       </ul>
         </div>
       </div>
@@ -1194,10 +1235,22 @@
       </div>
       <div class="role-line"><span class="tag hl"><span class="zh">数据分析实习生</span><span class="en">Data Analyst Intern</span></span><span class="tag time">2023.08 – 2023.12</span></div>
       <ul>
-        <li><span class="zh"><b>校园消费行为分析：</b>清洗 519,367 条消费记录并关联 4,341 条学生信息；多维消费特征分析、食堂客流与运营分析；肘部法则 + K-Means 划分四类消费群体，辅助识别困难学生。</span>
-        <span class="en"><b>Campus spending analysis:</b> Cleaned 519,367 consumption records linked to 4,341 student profiles; multi-dimensional spending, canteen traffic, and operations analysis; elbow method + K-Means segmented four groups to help identify students in need.</span></li>
-        <li><span class="zh"><b>供应链经营分析：</b>围绕经营利润、回款、总收益进行时序分析；平台业绩量、客户数、库存等运营评估；透视表与可视化交付经营建议。</span>
-        <span class="en"><b>Supply-chain analytics:</b> Time-series analysis of profit, collections, and revenue; operational assessment of sales, clients, and inventory; pivot tables and visualizations with business recommendations.</span></li>
+        <li class="grp"><span class="zh">1.&nbsp;&nbsp;大学生校园消费行为分析</span><span class="en">1.&nbsp;&nbsp;Campus Consumption Behavior Analysis</span></li>
+        <li><span class="zh"><b>数据处理：</b>清洗 519,367 条消费记录，处理缺失值、重复值和异常时段数据，并关联 4,341 条学生信息，形成数据集。</span>
+        <span class="en"><b>Data processing:</b> Cleaned 519,367 consumption records (missing values, duplicates and abnormal-period data) and linked 4,341 student profiles into a unified dataset.</span></li>
+        <li><span class="zh"><b>消费分析：</b>从消费金额、刷卡频次、消费地点、专业和性别等维度分析学生的消费特征。</span>
+        <span class="en"><b>Consumption analysis:</b> Analyzed student spending patterns across amount, frequency, location, major and gender.</span></li>
+        <li><span class="zh"><b>运营分析：</b>比较不同食堂、餐段及工作日与非工作日的客流差异，识别就餐高峰和各食堂经营特点，提出备餐建议。</span>
+        <span class="en"><b>Operations analysis:</b> Compared traffic across canteens, meal periods, and weekdays vs. weekends; identified peak hours and each canteen's operating characteristics, and proposed meal-preparation suggestions.</span></li>
+        <li><span class="zh"><b>学生分群：</b>使用肘部法则和 K-Means，将学生划分为四类消费群体，为识别困难学生提供辅助参考。</span>
+        <span class="en"><b>Student segmentation:</b> Used the elbow method and K-Means to segment students into four consumption groups, supporting the identification of students in need.</span></li>
+        <li class="grp"><span class="zh">2.&nbsp;&nbsp;供应链经营数据分析</span><span class="en">2.&nbsp;&nbsp;Supply-Chain Operations Data Analysis</span></li>
+        <li><span class="zh"><b>行业盈利分析：</b>围绕经营利润、回款金额和总收益，对食品、日化、母婴、酒饮、家电等产品进行时序分析。</span>
+        <span class="en"><b>Industry profitability:</b> Conducted time-series analysis of operating profit, payment collection and total revenue across food, daily chemicals, mother &amp; baby, beverages and home appliances.</span></li>
+        <li><span class="zh"><b>平台运营分析：</b>分析行业业绩量、省区客户数、结算数量、库存等情况，评估经营与资金周转状态。</span>
+        <span class="en"><b>Platform operations:</b> Analyzed industry volume, provincial client counts, settlements and inventory to assess business performance and cash turnover.</span></li>
+        <li><span class="zh"><b>可视化交付：</b>使用数据透视表、时序图、占比图等呈现分析结果，并提出区域经营、库存管理和商家运营建议。</span>
+        <span class="en"><b>Visualized delivery:</b> Presented results with pivot tables, time-series and proportion charts, and proposed suggestions on regional operations, inventory management and merchant operations.</span></li>
       </ul>
         </div>
       </div>
@@ -1410,7 +1463,7 @@
       <div class="carousel">
         <div class="hnr-card">
           <div class="hnr-ph"><span class="zh">更新中</span><span class="en en-font">UPDATING</span></div>
-          <h4><span class="zh">燕山大学校园主持人大赛「十强」选手</span><span class="en">Top-10 Finalist, Yanshan Univ. Host Competition</span></h4>
+          <h4><span class="zh">燕山大学校园主持人大赛「十强」选手</span><span class="en">Top-10 Finalist, Yanshan University Host Competition</span></h4>
           <p><i><span class="zh">2024</span><span class="en">2024</span></i></p>
         </div>
         <div class="hnr-card">
@@ -1439,7 +1492,7 @@
         </div>
         <div class="hnr-card">
           <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/art-5.jpg" alt="2021年燕山大学思政公开课三等奖证书"></div>
-          <h4><span class="zh">燕山大学思政公开课（三等奖）</span><span class="en">Ideological Open Course · Third Prize</span></h4>
+          <h4><span class="zh">燕山大学思政公开课（三等奖）</span><span class="en">Ideological &amp; Political Open Course · Third Prize</span></h4>
           <p><i><span class="zh">2021</span><span class="en">2021</span></i></p>
           <div class="hnr-link"><a href="https://365.kdocs.cn/l/caTsU6gpNDRe" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
         </div>
@@ -1481,9 +1534,9 @@
         <div class="sk-head"><span class="zh">持有证书</span><span class="en">Certificates</span></div>
         <div class="sk-row">
           <span class="pill"><span class="zh">雅思 6.5</span><span class="en">IELTS 6.5</span></span>
-          <span class="pill"><span class="zh">高中数学教师资格证</span><span class="en">High-School Math Teacher Certificate</span></span>
+          <span class="pill"><span class="zh">高中数学教师资格证</span><span class="en">Teacher Qualification Certificate (High-School Mathematics)</span></span>
           <span class="pill"><span class="zh">C1 驾驶证</span><span class="en">C1 Driving License</span></span>
-          <span class="pill"><span class="zh">普通话二甲证书</span><span class="en">Mandarin Proficiency (Grade 2-A)</span></span>
+          <span class="pill"><span class="zh">普通话二甲证书</span><span class="en">Mandarin Proficiency Test (Level 2-A)</span></span>
           <span class="pill"><span class="zh">CBDA 大数据分析工程师技能证书</span><span class="en">CBDA Big-Data Analyst Skill Certificate</span></span>
         </div>
       </div>
@@ -1694,6 +1747,16 @@
     });
   }
 
+  // ---------- 移动端菜单 ----------
+  function toggleMenu(){
+    document.getElementById('menu').classList.toggle('open');
+    document.getElementById('navBurger').classList.toggle('open');
+  }
+  function closeMenu(){
+    document.getElementById('menu').classList.remove('open');
+    document.getElementById('navBurger').classList.remove('open');
+  }
+
   // ---------- 页面切换 ----------
   function go(name){
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1702,6 +1765,7 @@
     document.querySelectorAll('nav.menu a').forEach(a => {
       a.classList.toggle('active', a.dataset.page === name);
     });
+    closeMenu();
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
   }
 
@@ -1721,3 +1785,4 @@
 </script>
 </body>
 </html>
+
