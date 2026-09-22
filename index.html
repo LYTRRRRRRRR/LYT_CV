@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>刘郁婷 Yuting Liu · 个人主页</title>
+<meta name="description" content="刘郁婷 — 北京邮电大学概率与统计系硕士在读 | 统计学 · 博弈论 · 排队论 · 强化学习">
+<style>
+  :root{
+    --ink:#111111;
+    --sub:#6b6b6b;
+    --line:#e8e8e8;
+    --bg:#ffffff;
+    --bg-soft:#f7f7f5;
+    --accent:#2f54eb;
+    --accent-2:#ff5c8a;
+    --max:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Segoe UI","PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.7;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+  .en-font{font-family:"Arial Black","Arial",sans-serif;letter-spacing:-.01em;}
+
+  /* ---------- 双语显示控制 ---------- */
+  body.lang-en .zh{display:none !important;}
+  body:not(.lang-en) .en{display:none !important;}
+
+  /* ---------- 顶部导航 ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:14px;}
+  .logo{font-weight:900;font-size:22px;letter-spacing:-.02em;display:flex;align-items:baseline;cursor:pointer;}
+  .logo .dot{color:var(--accent-2);}
+  .logo .dot i{font-style:normal;color:var(--accent);}
+  .nav-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  nav.menu{display:flex;align-items:center;gap:2px;}
+  nav.menu a{
+    font-size:13.5px;color:var(--sub);padding:6px 10px;border-radius:999px;
+    transition:all .18s ease;white-space:nowrap;cursor:pointer;
+  }
+  nav.menu a:hover{color:var(--ink);background:var(--bg-soft);}
+  nav.menu a.active{color:#fff;background:var(--ink);}
+  .lang-toggle{
+    display:flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden;
+    margin-left:6px;flex-shrink:0;
+  }
+  .lang-toggle button{
+    border:none;background:transparent;color:var(--ink);font-size:12.5px;font-weight:700;
+    padding:5px 12px;cursor:pointer;transition:all .15s;
+  }
+  .lang-toggle button.on{background:var(--ink);color:#fff;}
+  .nav-cta{
+    background:var(--ink);color:#fff !important;font-size:12.5px !important;
+    padding:9px 14px !important;border-radius:8px !important;flex-shrink:0;
+  }
+  .nav-cta:hover{background:#333 !important;}
+
+  /* ---------- 页面切换 ---------- */
+  .page{display:none;}
+  .page.active{display:block;animation:fadeUp .45s ease;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:96px 0 20px;position:relative;overflow:hidden;}
+  .hello{text-align:center;font-size:clamp(15px,1.8vw,19px);font-weight:600;}
+  .display{margin-top:8px;text-align:center;line-height:.85;position:relative;}
+  .display .row{
+    font-weight:900;letter-spacing:-.045em;
+    font-size:clamp(50px,12.6vw,162px);
+    text-transform:uppercase;white-space:nowrap;
+  }
+  .display .row.outline{
+    color:transparent;
+    -webkit-text-stroke:2px var(--ink);
+    font-size:clamp(44px,10.4vw,134px);
+  }
+  .display .accent-mark{color:var(--accent-2);}
+  .hero-bottom{
+    display:grid;grid-template-columns:1fr auto 1fr;
+    align-items:center;column-gap:clamp(24px,4vw,56px);
+    margin-top:0;
+  }
+  .hero-bottom .meta-block.left{justify-self:end;text-align:right;}
+  .hero-bottom .meta-block.right{justify-self:start;text-align:left;}
+  .hero-bottom .meta-block .val{font-size:13.5px;}
+  .hero-bottom .meta-block.left .val{white-space:nowrap;}
+  .hero-photo{
+    position:relative;z-index:3;
+    margin-top:clamp(4px,1.5vw,18px);
+    margin-bottom:-6px;
+  }
+  .hero-photo img{
+    width:min(212px,40vw);display:block;background:#fff;
+    padding:12px;border:1px solid #ececec;border-radius:4px;
+    box-shadow:0 3px 8px rgba(0,0,0,.14);
+  }
+  .hero-bottom .meta-block{max-width:360px;}
+  .hero-bottom .meta-block.left{max-width:none;}
+  .hero-bottom .label{margin-bottom:4px;}
+  .hero-bottom .val{font-size:14px;line-height:1.65;}
+  .hero-meta{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:24px;margin-top:54px;flex-wrap:wrap;
+  }
+  .meta-block .label{
+    font-size:11px;letter-spacing:.22em;color:#9a9a9a;text-transform:uppercase;margin-bottom:6px;
+  }
+  .meta-block .val{font-size:15.5px;}
+  .meta-block.right{text-align:right;}
+  .hero-btns{display:flex;justify-content:center;gap:12px;margin-top:26px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:10px 26px;font-size:14px;border-radius:9px;
+    border:1.5px solid var(--ink);transition:all .2s ease;cursor:pointer;
+  }
+  .hero-btns .btn:not(.none)::after{content:" \2197";}
+  .btn.none{opacity:.35;pointer-events:none;cursor:default;}
+  .btn.dark{background:var(--ink);color:#fff;}
+  .btn.dark:hover{background:#333;border-color:#333;transform:translateY(-2px);}
+  .btn.light:hover{background:var(--ink);color:#fff;transform:translateY(-2px);}
+
+  /* ---------- 分区通用 ---------- */
+  .page-pad{padding:110px 0 60px;}
+  .sec-head{display:flex;align-items:baseline;gap:18px;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:38px;}
+  .sec-num{font-size:13px;color:var(--accent-2);font-weight:700;letter-spacing:.1em;}
+  .sec-title{font-size:clamp(26px,3.4vw,38px);font-weight:900;letter-spacing:-.01em;}
+  .sec-en-t{margin-left:auto;font-size:12px;letter-spacing:.28em;color:#b5b5b5;text-transform:uppercase;white-space:nowrap;}
+
+  .card{
+    position:relative;
+    border:1px solid var(--line);border-radius:14px;padding:26px 28px;
+    margin-bottom:20px;background:#fff;transition:box-shadow .2s ease,border-color .2s ease;
+  }
+  .ribbon{
+    position:absolute;top:-1px;right:26px;z-index:2;
+    background:#d64545;color:#fff;font-size:11px;font-weight:700;letter-spacing:.03em;
+    padding:6px 9px 13px;border-radius:0 0 3px 3px;
+    clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - 6px),0 100%);
+    box-shadow:0 2px 6px rgba(214,69,69,.3);
+  }
+  .card:hover{box-shadow:0 12px 32px rgba(0,0,0,.07);border-color:#d9d9d9;}
+  .card-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;}
+  .card h3{font-size:19px;font-weight:800;letter-spacing:-.01em;}
+  .card .time{font-size:13px;color:var(--sub);white-space:nowrap;}
+  .card .role-line{margin-top:6px;font-size:13.5px;color:var(--sub);}
+  /* Research 卡片：左图右文两栏 */
+  .res-layout{display:grid;grid-template-columns:212px 1fr;column-gap:30px;align-items:start;}
+  .res-figure{display:flex;flex-direction:column;gap:14px;}
+  .res-img{
+    background:#fff;border:1px solid #d9d9d9;padding:7px;border-radius:4px;
+    box-shadow:0 3px 8px rgba(0,0,0,.14);
+  }
+  .res-img.zoom{cursor:zoom-in;transition:transform .18s ease;}
+  .res-img.zoom:hover{transform:translateY(-3px);}
+  .res-img img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top center;display:block;border-radius:2px;}
+  #research .res-img img{aspect-ratio:3/4;}
+  #research .res-placeholder{aspect-ratio:3/4;}
+  .res-placeholder{
+    aspect-ratio:4/3;border:1.5px dashed #bdbdbd;border-radius:4px;background:#fafafa;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    font-weight:800;color:#8f8f8f;letter-spacing:.14em;font-size:16px;
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
+  }
+  .res-placeholder .en{font-size:11px;letter-spacing:.2em;}
+  .res-btns{display:flex;gap:10px;}
+  .res-btn{
+    flex:1;text-align:center;background:var(--ink);color:#fff;
+    padding:9px 6px;border-radius:8px;font-size:13px;font-weight:700;
+    transition:opacity .15s ease,transform .15s ease;
+  }
+  .res-btn:hover{transform:translateY(-2px);opacity:.85;}
+  .res-btn.none{opacity:.35;pointer-events:none;}
+  .res-btns.multi{flex-wrap:wrap;row-gap:8px;}
+  .res-btns.multi .res-btn{flex:1 1 40%;}
+  #competitions .res-btn::after{content:" \2197";}
+  #research .res-btn:not(.none)::after{content:" \2197";}
+  #campus .res-btn:not(.none)::after{content:" \2197";}
+  .res-body{min-width:0;}
+  .tag{
+    display:inline-block;font-size:12px;padding:2px 10px;border-radius:999px;
+    background:var(--bg-soft);border:1px solid var(--line);color:var(--ink);margin:3px 4px 3px 0;
+  }
+  .tag.hl{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .tag.prize{background:#fff4f7;border-color:#ffd6e2;color:#d6336c;}
+  .tag.gold{background:#fdf6e0;border-color:#eed9a0;color:#a67c00;}
+  .tag.time{background:#eef4ff;border-color:#c9dcff;color:#1d63c9;}
+  .card ul{margin:14px 0 0 18px;color:#333;font-size:14.5px;}
+  .card ul li{margin-bottom:7px;}
+  .card .paras{margin:14px 0 0;color:#333;font-size:14.5px;line-height:1.75;}
+  .card .paras p{margin:0 0 10px;}
+  .card .paras p:last-child{margin-bottom:0;}
+  .links{margin-top:14px;font-size:13.5px;}
+  .links a{color:var(--accent);border-bottom:1px solid transparent;margin-right:18px;transition:border-color .15s;}
+  .links a:hover{border-color:var(--accent);}
+
+  /* 教育背景 */
+  .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .edu-card .school{font-size:24px;font-weight:900;letter-spacing:-.01em;}
+  .edu-card .major{color:var(--sub);font-size:14.5px;margin-top:2px;}
+  .edu-card .gpa{margin-top:14px;font-size:15px;}
+  .edu-card .gpa b{font-size:22px;font-weight:900;}
+  .course-cols{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;margin-top:14px;font-size:13.5px;color:#444;}
+  .interest-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
+  .chip{
+    padding:8px 18px;border:1.5px solid var(--ink);border-radius:999px;
+    font-size:14px;font-weight:600;transition:all .18s;
+  }
+  .chip:hover{background:var(--ink);color:#fff;transform:translateY(-2px);}
+
+  /* 技能 */
+  .skill-grid{display:grid;grid-template-columns:1fr;gap:36px;}
+  .skill-card{position:relative;border:1px solid var(--line);border-radius:14px;padding:34px 26px 24px;background:#fff;}
+  .sk-head{
+    position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+    background:var(--ink);color:#fff;white-space:nowrap;
+    font-size:14px;font-weight:600;padding:8px 32px;border-radius:999px;letter-spacing:.05em;
+  }
+  .sk-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;}
+  .sk-row+.sk-row{margin-top:10px;}
+  .pill{border:1px solid #d9d9d9;background:#fafafa;border-radius:8px;padding:7px 15px;font-size:13.5px;font-weight:600;color:#333;line-height:1;}
+
+  /* 个人评价 */
+  .eval-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px;}
+  .eval-item{border-left:3px solid var(--ink);padding:4px 0 4px 18px;}
+  .eval-item b{display:block;font-size:15.5px;margin-bottom:4px;}
+  .eval-item span{font-size:13.5px;color:var(--sub);}
+
+  /* 荣誉列表 */
+  .honor-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+
+  /* ---------- 教育背景 v2（参考布局） ---------- */
+  .edu-layout{display:grid;grid-template-columns:225px 2px 1fr;column-gap:34px;align-items:stretch;}
+  .edu-side{text-align:center;padding-top:6px;position:sticky;top:96px;align-self:start;}
+  .edu-avatar{
+    width:186px;background:#fff;padding:10px;
+    border:1px solid #ececec;border-radius:6px;
+    margin:4px auto 24px;
+    box-shadow:0 3px 8px rgba(0,0,0,.12);
+  }
+  .edu-avatar img{width:100%;display:block;border-radius:3px;}
+  .edu-topics{font-weight:800;font-size:15px;line-height:1.9;letter-spacing:-.01em;}
+  .edu-vline{background:var(--ink);width:2px;justify-self:center;}
+  .edu-main{min-width:0;}
+
+  /* 时间轴卡片：滚动交替滑入 + 上下重叠 + 点击切换 */
+  .edu-card{
+    position:relative;display:grid;grid-template-columns:1fr 200px;column-gap:30px;
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:26px 30px;box-shadow:0 16px 36px rgba(0,0,0,.08);
+    opacity:0;transition:opacity .55s ease,transform .55s ease,filter .4s ease;
+  }
+  .edu-card:nth-child(odd){transform:translateX(-40px);z-index:2;}
+  .edu-card:nth-child(even){transform:translateX(40px);z-index:1;}
+  .edu-card.in{opacity:1;transform:translateX(0);}
+  .edu-card + .edu-card{margin-top:-26px;}
+  /* 点击切换：active 完整显示置顶，dim 半透明下沉 */
+  .edu-card{cursor:pointer;}
+  .edu-card.in.active{z-index:5;opacity:1;transform:translateX(0);box-shadow:0 20px 44px rgba(0,0,0,.13);}
+  .edu-card.in.dim{opacity:.32;z-index:1;transform:translateY(16px);filter:grayscale(.25);}
+  /* 时间轴节点：黑色圆点 + 白色箭头（指向右 = 当前展示） */
+  .edu-card::before{
+    content:"";position:absolute;left:-44px;top:32px;
+    width:12px;height:12px;border-radius:50%;
+    background:var(--ink);border:3px solid var(--ink);z-index:3;
+  }
+  .edu-card::after{
+    content:"";position:absolute;left:-39px;top:38px;
+    width:0;height:0;z-index:4;
+    border-left:4px solid transparent;border-right:4px solid transparent;
+    border-bottom:6.5px solid #fff;
+    transition:transform .35s ease;
+  }
+  .edu-card.active::after{transform:rotate(90deg);}
+  .edu-card.dim::before,.edu-card.dim::after{opacity:.4;}
+
+  .edu-head{display:flex;align-items:center;gap:14px;margin-bottom:6px;}
+  .school-logo{
+    width:52px;height:52px;flex-shrink:0;object-fit:contain;
+    background:#fff;border:1px solid var(--line);border-radius:8px;padding:3px;
+  }
+  .edu-head h3{font-size:clamp(15px,1.55vw,21px);font-weight:900;letter-spacing:-.01em;}
+  .edu-sub{font-size:13.5px;color:var(--sub);margin-top:2px;}
+  .edu-time{white-space:nowrap;}
+  .edu-entry .gpa{margin-top:12px;font-size:13.5px;color:#444;}
+  .edu-entry .gpa b{font-size:20px;color:var(--ink);}
+  .course-cols div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dotted var(--line);padding:5px 0;}
+  .course-cols em{font-style:normal;font-weight:700;color:var(--ink);}
+  .course-table{
+    width:100%;border-collapse:collapse;margin-top:16px;font-size:13.5px;
+  }
+  .course-table td{padding:5px 8px;text-align:left;border-bottom:1px dotted #ddd;color:#444;}
+  .course-table td.cat{
+    font-weight:800;color:var(--ink);width:92px;
+    border-bottom:none;vertical-align:top;padding-left:0;padding-top:6px;
+  }
+  .course-table tr.cat-end td:not(.cat){border-bottom:none;}
+  .course-table tr.cat-start td{border-top:1px solid #e4e4e4;}
+  .course-table tr.cat-start td.cat{padding-top:8px;}
+  .edu-cert{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;align-self:center;}
+  .doc-thumb{
+    position:relative;width:100%;max-width:200px;height:158px;
+    background:#fdfcf9;border:1px solid #e5e2da;border-radius:6px;
+    padding:18px 16px 0;box-shadow:0 3px 8px rgba(0,0,0,.08);
+    transition:transform .18s ease;display:block;overflow:hidden;
+  }
+  .doc-thumb:hover{transform:translateY(-3px) rotate(-.5deg);}
+  .doc-thumb.img{padding:0;height:auto;max-height:230px;cursor:zoom-in;}
+  .doc-thumb.img img{width:100%;display:block;}
+
+  /* 点击放大查看（Lightbox） */
+  .lightbox{
+    position:fixed;inset:0;background:rgba(0,0,0,.84);z-index:999;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;transition:opacity .2s ease;cursor:zoom-out;padding:20px;
+  }
+  .lightbox.open{opacity:1;pointer-events:auto;}
+  .lightbox img{
+    max-width:92vw;max-height:92vh;border-radius:6px;background:#fff;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+  }
+  .doc-line{display:block;height:5px;border-radius:3px;background:#d9d5cb;margin-bottom:9px;}
+  .doc-line.w80{width:80%;}.doc-line.w70{width:70%;}.doc-line.w60{width:60%;}
+  .doc-seal{
+    position:absolute;right:14px;bottom:12px;width:38px;height:38px;
+    border:2.5px solid rgba(215,60,60,.55);border-radius:50%;
+  }
+  .doc-seal::after{
+    content:"";position:absolute;inset:6px;border:1px solid rgba(215,60,60,.4);border-radius:50%;
+  }
+  .btn-sm{padding:8px 18px;font-size:13px;border-radius:8px;text-align:center;}
+
+  /* 黑色胶囊小标题 + 横向卡片带 */
+  .band-badge{
+    display:table;margin:38px auto 22px;background:var(--ink);color:#fff;
+    font-size:14px;font-weight:600;padding:8px 26px;border-radius:999px;letter-spacing:.05em;
+  }
+  .carousel-wrap{position:relative;}
+  .carousel{
+    display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:4px 2px 16px;scrollbar-width:thin;scrollbar-color:#d5d5d5 transparent;
+  }
+  .carousel::-webkit-scrollbar{height:6px;}
+  .carousel::-webkit-scrollbar-thumb{background:#dcdcdc;border-radius:3px;}
+  .carousel::-webkit-scrollbar-track{background:transparent;}
+  .note-card{
+    flex:0 0 224px;scroll-snap-align:start;
+    border:1.5px solid #d9d9d9;border-radius:12px;overflow:hidden;background:#fff;
+    transition:transform .18s ease,box-shadow .18s ease;display:block;
+  }
+  .note-card:hover{transform:translateY(-5px);box-shadow:0 16px 30px rgba(0,0,0,.14);border-color:#b5b5b5;}
+  .note-thumb{
+    position:relative;display:flex;align-items:center;justify-content:center;
+    height:148px;background:#f2f1ec;overflow:hidden;
+  }
+  .note-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .note-thumb.zoom{cursor:zoom-in;}
+  .nt-page{
+    display:block;width:86px;height:112px;background:#fff;border:1px solid #e3e0d8;
+    border-radius:3px;box-shadow:0 2px 6px rgba(0,0,0,.1);padding:14px 12px 0;
+  }
+  .nt-page i{display:block;height:4px;border-radius:2px;background:#dad6cc;margin-bottom:8px;}
+  .nt-page i:nth-child(2){width:80%;}
+  .nt-page i:nth-child(4){width:65%;}
+  .nt-tag{
+    position:absolute;top:10px;right:10px;background:var(--ink);color:#fff;
+    font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.08em;
+  }
+  .note-card h4{font-size:14px;font-weight:800;padding:12px 14px 3px;line-height:1.4;letter-spacing:-.01em;}
+  .note-card h4::after{content:" \2197";font-size:12px;color:#8a8a8a;font-weight:700;}
+  .note-card p{font-size:12px;color:#8a8a8a;padding:0 14px 14px;line-height:1.55;}
+  .note-card p i{color:#6a6a6a;}
+  .car-btn{
+    position:absolute;top:64px;z-index:5;width:38px;height:38px;border-radius:50%;
+    background:var(--ink);color:#fff;border:none;font-size:20px;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;opacity:.9;transition:all .18s ease;
+  }
+  .car-btn:hover{opacity:1;transform:scale(1.08);}
+  .car-btn.prev{left:-14px;}
+  .car-btn.next{right:-14px;}
+  .honor-block{border:1px solid var(--line);border-radius:14px;padding:24px 26px;}
+  /* Honors 三轨道卡片带（浅灰边框） */
+  .hnr-card{
+    flex:0 0 224px;scroll-snap-align:start;
+    border:1.5px solid #e3e3e3;border-radius:12px;overflow:hidden;background:#fff;
+    transition:transform .18s ease,box-shadow .18s ease;display:flex;flex-direction:column;
+  }
+  .hnr-card:hover{transform:translateY(-5px);box-shadow:0 14px 28px rgba(0,0,0,.10);border-color:#c9c9c9;}
+  .hnr-thumb{height:150px;background:#f7f7f5;overflow:hidden;cursor:zoom-in;}
+  .hnr-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease;}
+  .hnr-card:hover .hnr-thumb img{transform:scale(1.04);}
+  .hnr-card h4{font-size:13.5px;font-weight:800;padding:11px 13px 2px;line-height:1.45;letter-spacing:-.01em;}
+  .hnr-card p{font-size:11.5px;color:#8a8a8a;padding:0 13px;line-height:1.5;}
+  .hnr-card p i{color:#6a6a6a;}
+  .hnr-link{font-size:12px;padding:8px 13px 12px;margin-top:auto;}
+  .hnr-card.plain{justify-content:center;min-height:196px;}
+  .hnr-card.plain h4{padding:0 18px;font-size:14.5px;}
+  .hnr-card.plain p{padding:6px 18px 0;}
+  .hnr-ph{
+    height:150px;border-bottom:1.5px solid #e3e3e3;background:#fafafa;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  }
+  .hnr-ph .zh{font-size:14px;color:#9a9a9a;font-weight:600;letter-spacing:.1em;}
+  .hnr-ph .en{font-size:10px;color:#b5b5b5;letter-spacing:.25em;}
+  .honor-block h4{font-size:16px;font-weight:800;margin-bottom:12px;}
+  .honor-block ul{list-style:none;font-size:14px;color:#333;}
+  .honor-block li{padding:6px 0;border-bottom:1px dashed var(--line);}
+  .honor-block li:last-child{border-bottom:none;}
+  .honor-block li a{color:var(--accent);}
+
+  /* Footer（顶部单行 + 黑线下方详细信息与核心特质） */
+  footer{margin-top:34px;border-top:2px solid var(--ink);padding:20px 0 16px;background:var(--bg-soft);}
+  .foot-compact{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+  .foot-big{font-size:24px;font-weight:900;letter-spacing:-.02em;}
+  .foot-big .dot{color:var(--accent-2);}
+  .foot-contact{display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px;color:#444;}
+  .foot-contact a{color:var(--accent);}
+  .foot-nav{display:flex;gap:14px;flex-wrap:wrap;font-size:13.5px;}
+  .foot-nav a{color:var(--sub);cursor:pointer;}
+  .foot-nav a:hover{color:var(--ink);}
+  .copyright{margin-top:12px;font-size:12px;color:#aaa;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+  /* 核心特质（黑线下方详细区） */
+  .foot-qualities{margin-top:24px;padding-top:22px;border-top:1px dashed var(--line);}
+  .foot-qualities h4{font-size:12px;letter-spacing:.24em;color:#9a9a9a;text-transform:uppercase;margin-bottom:18px;font-weight:700;}
+  .fq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 26px;}
+  .fq-item{border-left:2.5px solid var(--ink);padding-left:14px;}
+  .fq-item b{display:block;font-size:14.5px;margin-bottom:3px;letter-spacing:-.01em;}
+  .fq-item span{display:block;font-size:12.8px;color:#666;line-height:1.65;}
+  .fq-item:hover{border-left-color:var(--accent-2);}
+  .fq-item:hover b{color:var(--accent);}
+
+  @media (max-width:960px){
+    .edu-grid,.skill-grid,.eval-grid,.honor-cols{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    nav.menu{display:none;}
+    .hero-bottom{grid-template-columns:1fr;row-gap:26px;justify-items:center;}
+    .hero-photo{order:-1;margin-top:0;margin-bottom:0;}
+    .hero-photo img{width:min(240px,60vw);}
+    .hero-bottom .meta-block{justify-self:center !important;text-align:center !important;max-width:420px;}
+    .hero-bottom .meta-block .val{font-size:12.5px;white-space:normal !important;}
+    .fq-grid{grid-template-columns:1fr;gap:12px;}
+    .display .row{white-space:normal;}
+    .display .row.outline{font-size:clamp(40px,10.4vw,134px);}
+    .edu-layout{grid-template-columns:1fr;column-gap:0;}
+    .res-layout{grid-template-columns:1fr;row-gap:22px;}
+    .res-figure{max-width:280px;margin:0 auto;}
+    .res-placeholder{height:200px;}
+    .edu-vline{display:none;}
+    .edu-side{position:static;margin-bottom:26px;}
+    .edu-card{grid-template-columns:1fr;row-gap:20px;padding:20px;}
+    .edu-card:nth-child(odd),.edu-card:nth-child(even){transform:translateY(36px);}
+    .edu-card + .edu-card{margin-top:16px;}
+    .edu-card::before,.edu-card::after{display:none;}
+    .edu-cert{flex-direction:row;justify-content:flex-start;align-items:stretch;}
+    .doc-thumb{max-width:160px;height:130px;flex-shrink:0;}
+    .car-btn{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= 顶部导航 ================= -->
+<header>
+  <div class="wrap nav">
+    <div class="logo en-font" onclick="go('home')">Yuting<span class="dot"><i>.</i></span></div>
+    <div class="nav-right">
+      <nav class="menu" id="menu">
+        <a data-page="home" class="active" onclick="go('home')"><span class="zh">首页</span><span class="en">Home</span></a>
+        <a data-page="education" onclick="go('education')"><span class="zh">教育背景</span><span class="en">Education</span></a>
+        <a data-page="research" onclick="go('research')"><span class="zh">科研经历</span><span class="en">Research</span></a>
+        <a data-page="competitions" onclick="go('competitions')"><span class="zh">竞赛&amp;项目</span><span class="en">Competitions</span></a>
+        <a data-page="internships" onclick="go('internships')"><span class="zh">实习实践</span><span class="en">Internships</span></a>
+        <a data-page="campus" onclick="go('campus')"><span class="zh">校园经历</span><span class="en">Campus</span></a>
+        <a data-page="honors" onclick="go('honors')"><span class="zh">所获荣誉</span><span class="en">Honors</span></a>
+        <a data-page="skills" onclick="go('skills')"><span class="zh">技能</span><span class="en">Skills</span></a>
+        <a data-page="evaluation" onclick="go('evaluation')"><span class="zh">个人评价</span><span class="en">About Me</span></a>
+      </nav>
+      <div class="lang-toggle" id="langToggle">
+        <button id="btnZh" class="on" onclick="setLang('zh')">中</button>
+        <button id="btnEn" onclick="setLang('en')">En</button>
+      </div>
+      <a href="mailto:liutinger0409@163.com" class="nav-cta">liutinger0409@163.com</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 首页 Hero ================= -->
+<section class="page active" id="home">
+  <div class="hero">
+    <div class="wrap">
+      <p class="hello">
+        <span class="zh">👋 你好，我是刘郁婷！一个长期主义者！</span>
+        <span class="en">👋 Hi, I'm Yuting! A long-termist!</span>
+      </p>
+      <div class="display en-font">
+        <div class="row">Statistics</div>
+        <div class="row outline">Optimization<span class="accent-mark">.</span></div>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="meta-block left">
+          <div class="label">Currently</div>
+          <div class="val">
+            <span class="zh">北京邮电大学<br>概率与统计系<br>硕士在读 | 推免</span>
+            <span class="en">Beijing University of Posts and Telecommunications (BUPT)<br>Probability and Statistics<br>M.Sc. Candidate | Recommended Admission</span>
+          </div>
+        </div>
+        <div class="hero-photo"><img src="assets/photo-orig.jpg" alt="刘郁婷 Yuting Liu"></div>
+        <div class="meta-block right">
+          <div class="label">Motto</div>
+          <div class="val">Enjoy Challenges!<br>Do One Thing Well!<br>I Can Do. I Can Do Better!</div>
+        </div>
+      </div>
+
+      <div class="hero-btns">
+        <a class="btn light" href="https://365.kdocs.cn/l/cgH3qBID0gt2" target="_blank" rel="noopener">
+          <span class="zh">求职简历</span><span class="en">Job Resume</span>
+        </a>
+        <a class="btn light" href="https://365.kdocs.cn/l/cnRWqXFAFwWm" target="_blank" rel="noopener">
+          <span class="zh">科研简历</span><span class="en">Research Resume</span>
+        </a>
+        <a class="btn light" href="https://365.kdocs.cn/l/ckqIKoRt08xm" target="_blank" rel="noopener">
+          <span class="zh">成绩单</span><span class="en">Academic Transcript</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 教育背景 ================= -->
+<section class="page" id="education">
+  <div class="page-pad"><div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title"><span class="zh">教育背景</span><span class="en">Education</span></h2>
+      <span class="sec-en-t en-font">Education</span>
+    </div>
+
+    <div class="edu-layout">
+      <!-- 左侧：圆形照片 + 研究兴趣 -->
+      <aside class="edu-side">
+        <div class="edu-avatar"><img src="assets/photo-orig.jpg" alt="刘郁婷 Yuting Liu"></div>
+        <div class="edu-topics en-font">
+          <div>Statistics</div>
+          <div>Game Theory</div>
+          <div>Queuing Theory</div>
+          <div>Probability Theory</div>
+          <div>Stochastic Process</div>
+          <div>Dynamic Programming</div>
+          <div>Reinforcement Learning</div>
+        </div>
+      </aside>
+
+      <div class="edu-vline"></div>
+
+      <!-- 右侧：学历条目 -->
+      <div class="edu-main">
+
+        <div class="edu-card active" onclick="pickEdu(this)">
+          <div class="edu-info">
+            <div class="edu-head">
+              <img class="school-logo" src="assets/bupt-logo.jpg" alt="北京邮电大学校徽">
+              <div>
+                <h3><span class="zh">北京邮电大学</span><span class="en">Beijing University of Posts and Telecommunications</span></h3>
+                <div class="edu-sub">
+                  <span class="zh">数学系 | 硕士在读（推免） | </span>
+                  <span class="en">M.Sc. in Mathematics (Recommended Admission) | </span>
+                  <span class="edu-time">2024.09 – 2027.06</span>
+                </div>
+              </div>
+            </div>
+            <div class="gpa"><span class="zh">综合绩点</span><span class="en">Overall GPA</span> <b>93.47</b> / 100</div>
+            <div class="course-cols">
+              <div><span class="zh">强化学习及其应用</span><span class="en">Reinforcement Learning &amp; Applications</span><em>97</em></div>
+              <div><span class="zh">随机过程论</span><span class="en">Stochastic Processes</span><em>99</em></div>
+              <div><span class="zh">组合数学：算法与分析</span><span class="en">Combinatorics: Algorithms &amp; Analysis</span><em>95</em></div>
+              <div><span class="zh">概率论与随机过程</span><span class="en">Probability &amp; Stochastic Processes</span><em>93</em></div>
+              <div><span class="zh">非线性最优化</span><span class="en">Nonlinear Optimization</span><em>87</em></div>
+              <div><span class="zh">偏微分方程数值解</span><span class="en">Numerical Solutions of PDEs</span><em>86</em></div>
+            </div>
+          </div>
+          <div class="edu-cert">
+            <div class="doc-thumb img" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看">
+              <img src="assets/transcript-bupt.png" alt="北京邮电大学成绩单">
+            </div>
+            <a class="btn dark btn-sm" href="https://365.kdocs.cn/l/ckqIKoRt08xm" target="_blank" rel="noopener">
+              <span class="zh">成绩单</span><span class="en">Transcript</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="edu-card dim" onclick="pickEdu(this)">
+          <div class="edu-info">
+            <div class="edu-head">
+              <img class="school-logo" src="assets/ysu-logo.jpg" alt="燕山大学校徽">
+              <div>
+                <h3><span class="zh">燕山大学</span><span class="en">Yanshan University</span></h3>
+                <div class="edu-sub">
+                  <span class="zh">统计学 | 学士 | </span>
+                  <span class="en">B.Sc. in Statistics | </span>
+                  <span class="edu-time">2020.09 – 2024.06</span>
+                </div>
+              </div>
+            </div>
+            <div class="gpa">
+              <span class="zh">综合绩点</span><span class="en">Overall GPA</span> <b>3.986</b> / 4.5
+              <span class="tag hl"><span class="zh">排名 1/66</span><span class="en">Rank 1/66</span></span>
+            </div>
+            <table class="course-table zh">
+              <tr><td class="cat" rowspan="5">数学类</td><td>数学分析</td><td>高等代数</td></tr>
+              <tr><td>运筹学</td><td>几何分析</td></tr>
+              <tr><td>概率论</td><td>数理统计</td></tr>
+              <tr><td>常微分方程</td><td>随机过程论</td></tr>
+              <tr class="cat-end"><td>复变函数与积分变换</td><td>数学模型</td></tr>
+              <tr class="cat-start"><td class="cat" rowspan="3">统计类</td><td>多元统计分析</td><td>统计软件（SAS）</td></tr>
+              <tr><td>统计学原理</td><td>实验设计</td></tr>
+              <tr class="cat-end"><td>抽样调查</td><td>非参数统计</td></tr>
+              <tr class="cat-start"><td class="cat" rowspan="2">经济学</td><td>计量经济学</td><td>寿险精算理论</td></tr>
+              <tr class="cat-end"><td>西方经济学</td><td></td></tr>
+            </table>
+            <table class="course-table en">
+              <tr><td class="cat" rowspan="5">Mathematics</td><td>Mathematical Analysis</td><td>Advanced Algebra</td></tr>
+              <tr><td>Operations Research</td><td>Geometric Analysis</td></tr>
+              <tr><td>Probability Theory</td><td>Mathematical Statistics</td></tr>
+              <tr><td>Ordinary Differential Equations</td><td>Stochastic Processes</td></tr>
+              <tr class="cat-end"><td>Complex Functions &amp; Integral Transforms</td><td>Mathematical Modeling</td></tr>
+              <tr class="cat-start"><td class="cat" rowspan="3">Statistics</td><td>Multivariate Statistical Analysis</td><td>Statistical Software (SAS)</td></tr>
+              <tr><td>Principles of Statistics</td><td>Design of Experiments</td></tr>
+              <tr class="cat-end"><td>Sampling Surveys</td><td>Nonparametric Statistics</td></tr>
+              <tr class="cat-start"><td class="cat" rowspan="2">Economics</td><td>Econometrics</td><td>Life Insurance Actuarial Theory</td></tr>
+              <tr class="cat-end"><td>Western Economics</td><td></td></tr>
+            </table>
+            <div style="margin-top:12px;font-size:13.5px;color:#444;">
+              <span class="zh"><b>毕业论文：</b>《碳中和目标下河北省碳排放影响因素分析》—— 多元回归模型、PSO-BP 神经网络</span>
+              <span class="en"><b>Thesis:</b> "Analysis of Carbon Emission Influencing Factors in Hebei Province under Carbon Neutrality Goals" — multiple regression &amp; PSO-BP neural networks</span>
+            </div>
+          </div>
+          <div class="edu-cert">
+            <div class="doc-thumb img" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看">
+              <img src="assets/transcript-ysu.png" alt="燕山大学绩点与排名证明">
+            </div>
+            <a class="btn dark btn-sm" href="https://365.kdocs.cn/l/cnh52vUOtoU9" target="_blank" rel="noopener">
+              <span class="zh">绩点与排名证明</span><span class="en">GPA &amp; Rank Certificate</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 自学经历：横向滑动卡片带 -->
+    <div class="band-badge"><span class="zh">自学经历</span><span class="en">Self-directed Learning</span></div>
+    <div class="carousel-wrap">
+      <button class="car-btn prev" onclick="slideCar(this,-1)" aria-label="prev">‹</button>
+      <div class="carousel">
+        <a class="note-card" href="https://365.kdocs.cn/l/co556LvfT6Ay" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-1.png" alt="博弈论与信息经济学"></span>
+          <h4><span class="zh">教材</span><span class="en">Book</span></h4>
+          <p><i><span class="zh">博弈论与信息经济学</span><span class="en">Game Theory and Information Economics</span></i></p>
+        </a>
+        <a class="note-card" href="https://365.kdocs.cn/l/cjtSXtfGtedT" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-2.png" alt="博弈论与信息经济学 学习笔记"></span>
+          <h4><span class="zh">笔记</span><span class="en">Note</span></h4>
+          <p><i><span class="zh">博弈论与信息经济学（学习笔记）</span><span class="en">Game Theory and Information Economics</span></i></p>
+        </a>
+        <a class="note-card" href="https://365.kdocs.cn/l/ccEfFqg0f9FU" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-3.png" alt="Introduction to Probability Model"></span>
+          <h4><span class="zh">教材 | Sheldon M.Ross</span><span class="en">Book | Sheldon M.Ross</span></h4>
+          <p><i>Introduction to Probability Model</i></p>
+        </a>
+        <a class="note-card" href="https://365.kdocs.cn/l/cooGuKrNHPj5" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-4.png" alt="条件数学期望和条件方差的性质和应用"></span>
+          <h4><span class="zh">笔记 | 条件数学期望和条件方差的性质和应用</span><span class="en">Note | Properties and Applications of Conditional Mathematical Expectation and Variance</span></h4>
+          <p><i>Introduction to Probability Model</i></p>
+        </a>
+        <a class="note-card" href="https://365.kdocs.cn/l/cjxehxdxioOJ" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-5.png" alt="Introduction to Stochastic Dynamic Programming"></span>
+          <h4><span class="zh">教材 | Sheldon M.Ross</span><span class="en">Book | Sheldon M.Ross</span></h4>
+          <p><i>Introduction to Stochastic Dynamic Programming</i></p>
+        </a>
+        <a class="note-card" href="https://365.kdocs.cn/l/coPvx6gbAles" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-6.png" alt="Dynamic Programming & Reinforcement Learning Note"></span>
+          <h4><span class="zh">笔记</span><span class="en">Note</span></h4>
+          <p><i><span class="zh">动态规划&amp;强化学习</span><span class="en">Dynamic Programming &amp; Reinforcement Learning</span></i></p>
+        </a>
+        <a class="note-card" href="https://365.kdocs.cn/l/csZmmFUED7BJ" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-7.png" alt="Example: Goofspiel"></span>
+          <h4><span class="zh">例题整理 | Goofspiel</span><span class="en">Example | Goofspiel</span></h4>
+          <p><i><span class="zh">动态规划&amp;强化学习</span><span class="en">Dynamic Programming &amp; Reinforcement Learning</span></i></p>
+        </a>
+        <a class="note-card" href="https://365.kdocs.cn/l/cb3bswQfIMNg" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/self-8.png" alt="几何思维解数学题"></span>
+          <h4><span class="zh">笔记 | 几何思维解题</span><span class="en">Note | Solve Mathematical Problems Using Geometric Thinking</span></h4>          <p><i><span class="zh">动态规划&amp;强化学习</span><span class="en">Dynamic Programming &amp; Reinforcement Learning</span></i></p>
+        </a>
+      </div>
+      <button class="car-btn next" onclick="slideCar(this,1)" aria-label="next">›</button>
+    </div>
+
+    <!-- 文章研读：横向滑动卡片带 -->
+    <div class="band-badge"><span class="zh">文章研读 | UTD 24</span><span class="en">Paper Reading | UTD 24</span></div>
+    <div class="carousel-wrap">
+      <button class="car-btn prev" onclick="slideCar(this,-1)" aria-label="prev">‹</button>
+      <div class="carousel">
+        <a class="note-card" href="https://365.kdocs.cn/l/cfoguvQqmhRx" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/paper-1.png" alt="Efficient Inaccuracy 笔记"><span class="nt-tag">UTD24</span></span>
+          <h4>Efficient Inaccuracy User-Generated Information Sharing in a Queue</h4>
+          <p><span class="zh">Weekly Seminar · 论文研读</span><span class="en">Weekly Seminar · Paper Reading</span></p>
+        </a>
+        <a class="note-card" href="https://365.kdocs.cn/l/cgHHqnrMNzZz" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/paper-2.png" alt="Blockchain Adoption 笔记"><span class="nt-tag">POMS</span></span>
+          <h4>Blockchain Adoption for Combating Deceptive Counterfeits</h4>
+          <p><span class="zh">Weekly Seminar · 论文研读</span><span class="en">Weekly Seminar · Paper Reading</span></p>
+        </a>
+        <a class="note-card" href="https://365.kdocs.cn/l/clHUEQGfjC8o" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/paper-3.png" alt="Large-Scale Inventory Optimization 笔记"><span class="nt-tag">UTD24</span></span>
+          <h4>Large-Scale Inventory Optimization A Recurrent Neural Networks-Inspired Simulation Approach</h4>
+          <p><span class="zh">Weekly Seminar · 论文研读</span><span class="en">Weekly Seminar · Paper Reading</span></p>
+        </a>
+        <a class="note-card" href="https://365.kdocs.cn/l/cqpQYkr0jx9P" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/paper-4.png" alt="Disclosure Accessibility 笔记"><span class="nt-tag">UTD24</span></span>
+          <h4>The Usefulness and Limited Supply of Disclosure Accessibility</h4>
+          <p><span class="zh">Weekly Seminar · 论文研读</span><span class="en">Weekly Seminar · Paper Reading</span></p>
+        </a>
+        <a class="note-card" href="https://365.kdocs.cn/l/clGlcxfgD3iq" target="_blank" rel="noopener">
+          <span class="note-thumb zoom" onclick="event.stopPropagation();zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/paper-5.png" alt="Committed Versus Contingent Pricing 笔记"><span class="nt-tag">POMS</span></span>
+          <h4>Committed Versus Contingent Pricing Under Competition</h4>
+          <p><span class="zh">Weekly Seminar · 论文研读</span><span class="en">Weekly Seminar · Paper Reading</span></p>
+        </a>
+      </div>
+      <button class="car-btn next" onclick="slideCar(this,1)" aria-label="next">›</button>
+    </div>
+
+  </div></div>
+</section>
+
+<!-- ================= 科研经历 ================= -->
+<section class="page" id="research">
+  <div class="page-pad"><div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title"><span class="zh">科研经历</span><span class="en">Research Experience</span></h2>
+      <span class="sec-en-t en-font">Research</span>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-placeholder">
+            <span class="zh">在审</span>
+            <span class="en en-font">UNDER REVIEW</span>
+          </div>
+          <div class="res-btns">
+            <span class="res-btn none"><span class="zh">Paper</span><span class="en">Paper</span></span>
+            <span class="res-btn none"><span class="zh">Work Log</span><span class="en">Work Log</span></span>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3>Strategic Queuing Disclosure under Service Quality Uncertainty with Value-at-Risk Preferences</h3>
+      </div>
+      <div class="role-line">
+        <span class="tag hl"><span class="zh">第二作者</span><span class="en">2nd Author</span></span>
+        <span class="tag time">2025 – 2026</span>
+        <span class="tag prize"><span class="zh">European Journal of Operational Research (SCI-E) 在审</span><span class="en">Under review at EJOR (SCI-E)</span></span>
+      </div>
+      <ul>
+        <li><span class="zh"><b>模型构建：</b>构建贝叶斯说服博弈模型——顾客到达服从泊松过程、服务时间服从指数分布、服务质量高低不确定；顾客具有基于 Value-at-Risk 的风险偏好与等待时间认知偏差（有限理性），服务商承诺队列长度披露策略，顾客据此更新信念并做出加入/退出决策。</span>
+        <span class="en"><b>Model:</b> Bayesian persuasion game where arrivals follow a Poisson process, service times are exponential, and service quality is uncertain; customers have Value-at-Risk preferences and waiting-time cognitive biases (bounded rationality). The provider commits to a queue-length disclosure policy; customers update beliefs and decide to join or balk.</span></li>
+        <li><span class="zh"><b>方法运用：</b>贝叶斯说服框架 + 几何凸组合方法刻画最优披露策略；排队论与 VaR 效用函数推导顾客均衡策略；逆向归纳与数值分析求解利润最大化及社会福利最大化下的最优披露策略。</span>
+        <span class="en"><b>Methods:</b> Bayesian persuasion framework with geometric convex combination to characterize optimal disclosure; queueing theory and VaR utility for customer equilibrium; backward induction and numerical analysis for profit- and welfare-maximizing policies.</span></li>
+        <li><span class="zh"><b>核心发现：</b>发现"过早退出"现象——风险厌恶顾客即使预期效用为正也可能因规避尾部风险而退出；最优披露策略随需求从完全隐藏过渡到混合披露再到完全透明；认知偏差具有双重效应；极端风险厌恶下存在"心理失效区"，信息设计完全无效。</span>
+        <span class="en"><b>Findings:</b> Identify "early balking" — risk-averse customers may quit despite positive expected utility to avoid tail risk. Optimal disclosure shifts from full concealment to partial to full transparency as demand grows; cognitive biases have dual effects; under extreme risk aversion a "psychological failure zone" renders information design ineffective.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/research-2.png" alt="集合族交集问题手写推导"></div>
+          <div class="res-btns">
+            <span class="res-btn none"><span class="zh">Paper</span><span class="en">Paper</span></span>
+            <a class="res-btn" href="https://365.kdocs.cn/l/cpgj60Of8ZbL" target="_blank" rel="noopener">Work Log</a>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">组合数学构造问题 · 集合族交集极值问题</span><span class="en">Combinatorial Construction · Extremal Set Intersection Problem</span></h3>
+      </div>
+      <div class="role-line"><span class="tag hl"><span class="zh">独立研究</span><span class="en">Independent Research</span></span><span class="tag time">2025 – 2026</span></div>
+      <ul>
+        <li><span class="zh"><b>研究问题：</b>在 n 元集合族中，任意两集合交集恰为 1 且任意元素恰出现 n 次时，求集合数与元素数及其构造方法。</span>
+        <span class="en"><b>Problem:</b> For an n-element family where any two sets intersect in exactly one element and each element appears exactly n times, determine the number of sets/elements and a construction.</span></li>
+        <li><span class="zh"><b>核心结论：</b>最大集合数与元素数相等，均为 n(n−1)+1。</span>
+        <span class="en"><b>Result:</b> The maximum number of sets equals the number of elements, both n(n−1)+1.</span></li>
+        <li><span class="zh"><b>构造方法：</b>元素视为点、集合视为直线，把集合相交问题转化为二维平面的直线相交问题。</span>
+        <span class="en"><b>Construction:</b> View elements as points and sets as lines, reducing set intersection to line intersection in the plane.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/research-3.png" alt="基于产量信号竞争的信息披露策略 论文首页"></div>
+          <div class="res-btns">
+            <a class="res-btn" href="https://365.kdocs.cn/l/cc17sssn0vXQ" target="_blank" rel="noopener">Paper</a>
+            <a class="res-btn" href="https://365.kdocs.cn/l/cuINW4CjBErL" target="_blank" rel="noopener">Work Log</a>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">是否公开质量？在"限量供应"销售模式下的产品质量披露策略</span><span class="en">To Disclose Quality or Not? Product Quality Disclosure under Limited-Supply Sales</span></h3>
+      </div>
+      <div class="role-line"><span class="tag hl"><span class="zh">第一作者</span><span class="en">1st Author</span></span><span class="tag time">2025</span><span class="tag prize"><span class="zh">已录用</span><span class="en">Accepted</span></span></div>
+      <ul>
+        <li><span class="zh"><b>研究问题：</b>双寡头竞争市场中，高、低质量企业如何在"限量供应"模式下制定质量披露与产量策略，以传递质量信号并实现利润最大化。</span>
+        <span class="en"><b>Problem:</b> In a duopoly, how do high- and low-quality firms set quality-disclosure and output strategies under limited supply to signal quality and maximize profit.</span></li>
+        <li><span class="zh"><b>模型与方法：</b>两阶段动态博弈模型 + 库诺特竞争 + 精炼贝叶斯均衡框架，逆向归纳求解分离均衡与最优定产策略。</span>
+        <span class="en"><b>Model &amp; Methods:</b> Two-stage dynamic game with Cournot competition under perfect Bayesian equilibrium; backward induction yields separating equilibria and optimal output strategies.</span></li>
+        <li><span class="zh"><b>核心发现：</b>存在低产与高产两种分离均衡，成本结构决定均衡选择；高成本企业倾向主动披露质量，低成本企业选择不披露，披露与定产策略需协同优化。</span>
+        <span class="en"><b>Findings:</b> Two separating equilibria (low/high output) exist, selected by cost structure; high-cost firms disclose quality while low-cost firms stay silent; disclosure and output must be jointly optimized.</span></li>
+        <li><span class="zh"><b>个人贡献：</b>独立完成模型推导、均衡求解、数值仿真与论文撰写。</span>
+        <span class="en"><b>Contribution:</b> Independently completed model derivation, equilibrium solving, numerical simulation, and paper writing.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/research-4.png" alt="PSO-BP 碳排放预测模型"></div>
+          <div class="res-btns">
+            <a class="res-btn" href="https://365.kdocs.cn/l/cuM1YNrUJedn" target="_blank" rel="noopener">Paper</a>
+            <span class="res-btn none"><span class="zh">Work Log</span><span class="en">Work Log</span></span>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">碳中和目标下河北省碳排放影响因素分析及情景预测</span><span class="en">Carbon Emission Drivers and Scenario Forecast for Hebei Province under Carbon Neutrality</span></h3>
+      </div>
+      <div class="role-line"><span class="tag hl"><span class="zh">第一作者</span><span class="en">1st Author</span></span><span class="tag time">2024</span><span class="tag prize"><span class="zh">已发表</span><span class="en">Published</span></span></div>
+      <ul>
+        <li><span class="zh"><b>模型构建：</b>IPCC 碳排放系数法核算 2000–2021 年碳排放总量；STIRPAT 模型分解六项影响因素；构建多元回归与 PSO-BP 神经网络预测模型。</span>
+        <span class="en"><b>Model:</b> IPCC coefficient method for 2000–2021 emissions; STIRPAT decomposition of six drivers; multiple regression and PSO-BP neural network forecasting.</span></li>
+        <li><span class="zh"><b>方法运用：</b>Pearson 相关性分析、岭回归克服多重共线性、PSO 优化 BP 神经网络，对比三种模型精度择优，结合情景分析法设定 9 种发展情景预测。</span>
+        <span class="en"><b>Methods:</b> Pearson correlation, ridge regression against multicollinearity, PSO-optimized BP network; model comparison and 9-scenario forecasting.</span></li>
+        <li><span class="zh"><b>核心发现：</b>影响因素主次为人口数量、能源结构、城镇化率、人均GDP、能源强度、产业结构；仅"低发展"情景可在 2030 年前实现碳达峰；减排速率提升一级仍难以抵消经济增长带来的碳排放增长。</span>
+        <span class="en"><b>Findings:</b> Drivers ranked: population, energy mix, urbanization, GDP per capita, energy intensity, industrial structure; only low-growth scenarios peak before 2030; faster emission cuts still cannot offset growth-driven emissions.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 竞赛&项目经历 ================= -->
+<section class="page" id="competitions">
+  <div class="page-pad"><div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title"><span class="zh">竞赛 &amp; 项目经历</span><span class="en">Competitions &amp; Projects</span></h2>
+      <span class="sec-en-t en-font">Competitions</span>
+    </div>
+
+    <div class="card">
+      <div class="ribbon"><span class="zh">最值得看！</span><span class="en">Must Read!</span></div>
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/comp-1.png" alt="学苑造物 结构方程模型拟合与路径系数图" style="aspect-ratio:3/4;"></div>
+          <div class="res-btns multi">
+            <a class="res-btn" href="https://365.kdocs.cn/l/cq0iWw1MMUMr" target="_blank" rel="noopener">PDF</a>
+            <a class="res-btn" href="https://365.kdocs.cn/l/cfgICvWKFq5n" target="_blank" rel="noopener">PPT</a>
+            <a class="res-btn" href="https://365.kdocs.cn/l/cjekqDB7hZIt" target="_blank" rel="noopener">Certificate</a>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">学苑造物 · 北京市高校文创产品发展现状与消费行为解码</span><span class="en">Decoding Campus Cultural-Creative Products &amp; Consumer Behavior in Beijing Universities</span></h3>
+      </div>
+      <div class="role-line">
+        <span class="tag hl"><span class="zh">项目负责人</span><span class="en">Project Leader</span></span>
+        <span class="tag time">2025.03 – 2025.05</span>
+        <span class="tag prize"><span class="zh">"正大杯"第十五届全国大学生市场调查与分析大赛</span><span class="en">15th Zhengda Cup National Market Survey &amp; Analysis Competition</span></span><span class="tag gold"><span class="zh">全国一等奖</span><span class="en">National First Prize</span></span>
+      </div>
+      <ul>
+        <li><span class="zh"><b>调研设计：</b>主导"数据发现—实地验证—问卷量化"全流程；运用爬虫采集微博评论；完成 6 校实地走访与 9 校网店数据挖掘；设计"配额+滚雪球"抽样，回收问卷 1004 份，有效率达 98.7%；设计 7 种数据分析方案。</span>
+        <span class="en"><b>Survey design:</b> Led the full "data discovery — field validation — quantitative survey" pipeline; scraped Weibo comments; visited 6 campuses and mined online stores of 9; quota + snowball sampling collected 1,004 questionnaires with 98.7% validity; designed 7 analysis plans.</span></li>
+        <li><span class="zh"><b>竞品调研：</b>对比 9 校线上店铺的品类、价格、销量、配送机制，发现存在基础款定价相似、特色款溢价等问题。</span>
+        <span class="en"><b>Competitive research:</b> Compared categories, prices, sales, and delivery across 9 campus stores, finding similar basic-item pricing yet premium pricing on signature items.</span></li>
+        <li><span class="zh"><b>数据分析：</b>运用 TwoStep 聚类划分用户画像，区分现有消费者与潜在消费者；通过 XGBoost 划分 5 类购买导向并提取特征权重；基于结构方程 SEM 模型探究 8 个因素对消费意愿的影响路径，从中提炼产品优化方向。</span>
+        <span class="en"><b>Analytics:</b> TwoStep clustering segmented current vs. potential consumers; XGBoost identified 5 purchase-orientation groups with feature weights; SEM traced how 8 factors drive purchase intention, informing product optimization.</span></li>
+        <li><span class="zh"><b>模拟 PRD 撰写：</b>结合模型结果与实际情况，运用 AI 工具归纳调查结论与建议；发现 47% 用户反馈"价格高"、41% 反馈"缺乏实用性"等问题，提出"特色 IP 融入基础款+百元内定价+强化线上销售+赠送式体验营销"四维策略。</span>
+        <span class="en"><b>Mock PRD:</b> Synthesized model results with AI tools into conclusions and recommendations; identified "high price" (47%) and "low practicality" (41%) pain points and proposed a four-part strategy: signature IP on basics, sub-¥100 pricing, stronger online sales, and gift-based experiential marketing.</span></li>
+        <li><span class="zh"><b>视觉设计与答辩筹备：</b>独立完成封面及 PPT 视觉设计；系统梳理 35+ 道高频问题回答稿，组织团队模拟答辩。</span>
+        <span class="en"><b>Design &amp; defense prep:</b> Independently designed the cover and deck visuals; compiled 35+ Q&amp;A scripts and organized mock defenses.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/comp-2.jpg" alt="探典·寻目 动画片段截图" style="aspect-ratio:4/3;"></div>
+          <div class="res-btns">
+            <a class="res-btn" href="https://www.bilibili.com/video/BV1J4QiBwE8b/" target="_blank" rel="noopener">Video Link</a>
+            <a class="res-btn" href="https://365.kdocs.cn/l/cvDkQr5vGsCo" target="_blank" rel="noopener">Certificate</a>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">探典·寻目 —— 中医药传统文化（动画作品）</span><span class="en">Traditional Chinese Medicine Culture (Animation)</span></h3>
+      </div>
+      <div class="role-line">
+        <span class="tag hl"><span class="zh">项目负责人</span><span class="en">Project Leader</span></span>
+        <span class="tag time">2023.03 – 2023.06</span>
+        <span class="tag prize"><span class="zh">第十六届中国大学生计算机设计大赛</span><span class="en">16th China Collegiate Computing Contest</span></span><span class="tag gold"><span class="zh">全国二等奖</span><span class="en">National Second Prize</span></span>
+      </div>
+      <ul>
+        <li><span class="zh"><b>剧情设计：</b>参考《国家宝藏》等 10 余份文献，主导剧本创作，累计修改 6 版剧本，确保故事完整性与感染力。</span>
+        <span class="en"><b>Story:</b> Led scriptwriting based on 10+ references incl. <i>National Treasure</i>, through 6 revisions to ensure narrative completeness and appeal.</span></li>
+        <li><span class="zh"><b>动画制作：</b>使用 Procreate 逐帧绘制 300 余帧素材，完成全片 80% 以上画面；运用剪映剪辑，作品时长 3 分 40 秒。</span>
+        <span class="en"><b>Animation:</b> Drew 300+ frames frame-by-frame in Procreate (80%+ of the film); edited in Jianying, 3 min 40 s total.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/comp-3.png" alt="统计建模大赛 1DCNN 模型论文页" style="aspect-ratio:3/4;"></div>
+          <div class="res-btns multi">
+            <a class="res-btn" href="https://365.kdocs.cn/l/creGtmLzKTNj" target="_blank" rel="noopener">PDF</a>
+            <a class="res-btn" href="https://365.kdocs.cn/l/cvDPBFSWiyIv" target="_blank" rel="noopener">PPT</a>
+            <a class="res-btn" href="https://365.kdocs.cn/l/coYWqYO0rmST" target="_blank" rel="noopener">Cert. I</a>
+            <a class="res-btn" href="https://365.kdocs.cn/l/cpM77a3thGGs" target="_blank" rel="noopener">Cert. II</a>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">基于改进 1DCNN 模型的二氧化碳排放量统计监测</span><span class="en">Statistical Monitoring of CO₂ Emissions via Improved 1DCNN</span></h3>
+      </div>
+      <div class="role-line">
+        <span class="tag hl"><span class="zh">项目负责人</span><span class="en">Project Leader</span></span>
+        <span class="tag time">2023.04 – 2023.06</span>
+        <span class="tag prize"><span class="zh">第九届全国大学生统计建模大赛</span><span class="en">9th National Statistical Modeling Competition</span></span><span class="tag gold"><span class="zh">全国三等奖</span><span class="en">National Third Prize</span></span>
+      </div>
+      <div class="paras">
+        <p><span class="zh">本项目使用统计建模大赛官方数据库与世界银行数据库，整合 1990–2021 年的二氧化碳排放量、经济发展、人口规模、消费水平、能源生产与消费相关指标，建立面板数据。从时序性、相关性的角度，分析影响二氧化碳排放量的多种因素及其影响程度。结合实际分析后，发现选取的指标均与二氧化碳排放密切相关，可以作为深度学习模型的输入变量。</span>
+        <span class="en">Using the competition's official database and the World Bank database, this project integrated CO₂ emissions, economic development, population, consumption, and energy indicators (1990–2021) into panel data, analyzing the drivers of emissions from time-series and correlation perspectives. All selected indicators proved closely related to emissions and suitable as deep-learning inputs.</span></p>
+        <p><span class="zh">根据数据特征，选用一维卷积神经网络（1DCNN）、长短期记忆网络（LSTM）与残差网络（ResNet）进行对比实验，根据对比结果与特点，针对性地进行网络融合与架构改进，建立了 CNN-RESNET、CNN-LSTM 与改进的 1DCNN 模型。其中改进 1DCNN 模型的 RMSE 值为 55.290、MAE 值为 36.730，年度碳排放量监测值与真实值拟合度最高、曲线误差最小，训练效果远高于其余模型，最终选用其作为创新模型。</span>
+        <span class="en">Based on data characteristics, 1DCNN, LSTM, and ResNet were compared, then fused and improved into CNN-RESNET, CNN-LSTM, and an improved 1DCNN. The improved 1DCNN achieved RMSE 55.290 and MAE 36.730 with the best fit and smallest curve error — far outperforming the others — and was adopted as the final model.</span></p>
+        <p><span class="zh">本文综合考量多维指标的影响，提出了一种效率高、成本低、精度高、可推广的改进 1DCNN 模型，为碳排放监测问题提供了可参考的新方法，从及时监测的前提条件入手，对"双碳"目标的加快实现具有重要意义。</span>
+        <span class="en">Overall, the proposed model is efficient, low-cost, accurate, and generalizable, offering a new reference method for emission monitoring and accelerating China's dual-carbon goals through timely measurement.</span></p>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/comp-4.png" alt="市场调查分析大赛 KMO检验与正态分布图" style="aspect-ratio:3/4;"></div>
+          <div class="res-btns">
+            <a class="res-btn" href="https://365.kdocs.cn/l/crGvwYAqTNuM" target="_blank" rel="noopener">PDF</a>
+            <a class="res-btn" href="https://365.kdocs.cn/l/cc7mB1igGmUn" target="_blank" rel="noopener">Certificate</a>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">"非遗实景剧本杀"消费现状与市场前景分析</span><span class="en">Intangible-Heritage Live-Action Mystery Games: Consumption &amp; Market Outlook</span></h3>
+      </div>
+      <div class="role-line">
+        <span class="tag hl"><span class="zh">项目负责人</span><span class="en">Project Leader</span></span>
+        <span class="tag time">2023.03 – 2023.05</span>
+        <span class="tag prize"><span class="zh">"正大杯"第十三届全国大学生市场调查与分析大赛</span><span class="en">13th Zhengda Cup National Competition</span></span><span class="tag gold"><span class="zh">全国三等奖</span><span class="en">National Third Prize</span></span>
+      </div>
+      <div class="paras">
+        <p><span class="zh">本项目基于"非遗实景剧本杀"产业，综合运用多种数据分析方法展开研究。调查采用配额与随机抽样，按七大行政区常住人口分配样本，回收有效问卷 507 份，通过信效度检验与测谎项确保数据质量。</span>
+        <span class="en">This project studied the intangible-heritage live-action mystery industry with multiple analytical methods. Sampling combined quota and random schemes allocated by population across China's seven regions; 507 valid questionnaires were collected, with reliability, validity, and lie-detection checks ensuring data quality.</span></p>
+      </div>
+      <ul>
+        <li><span class="zh"><b>认知分析：</b>描述性统计显示群众了解程度低；列联表揭示年龄、职业与参与情况相关，文化程度与了解程度相关；K-means 聚类发现 54% 人群对该模式一无所知；巨量算数与文本挖掘显示广东、河南等省搜索热度高，"河口古镇""博物馆""传统文化"为关注热点。</span>
+        <span class="en"><b>Awareness:</b> Descriptive statistics showed low awareness; contingency tables linked age and occupation to participation, education to awareness; K-means found 54% wholly unaware; Ocean Engine and text mining showed high search interest in Guangdong and Henan, centered on "Hekou Ancient Town," "museums," and "traditional culture."</span></li>
+        <li><span class="zh"><b>满意度分析：</b>基于主成分分析提取感知易用性、剧本质量、沉浸体验、地区引流价值等主成分，多数满意度较高但商家效率偏低；多元有序 Logistic 回归表明参与频率、地区、年龄段、月消费对满意度影响显著。</span>
+        <span class="en"><b>Satisfaction:</b> PCA extracted perceived ease of use, script quality, immersion, and regional traffic value; most scores were positive except merchant efficiency; ordinal logistic regression showed participation frequency, region, age group, and monthly spending significantly affect satisfaction.</span></li>
+        <li><span class="zh"><b>消费意愿分析：</b>结合 TPB 与 TAM 理论构建结构方程模型，TPB 模型下购买态度（0.699）、主观规范（0.251）、感知行为控制（0.038）正向影响意向；TAM 模型下感知易用性（0.66）、消费态度（0.36）影响显著；多元有序 Logistic 回归显示实景环境、沉浸感、非遗融合流畅度对意向影响较大。</span>
+        <span class="en"><b>Purchase intention:</b> SEM built on TPB and TAM: under TPB, attitude (0.699), subjective norms (0.251), and perceived behavioral control (0.038) positively shaped intention; under TAM, perceived ease of use (0.66) and consumption attitude (0.36) were significant; ordinal logistic regression highlighted live-action setting, immersion, and smooth heritage integration.</span></li>
+        <li><span class="zh"><b>前景分析：</b>权重赋值法得出剧情生动性最重要；ELM 模型引入"从众效应"中介后，评论情感倾向性（0.412）、评论可信性（0.076）、评论不确定性（0.610）对再传播意愿正向影响；据此从剧本质量、非遗融入、专业服务、社交媒体宣传及定价策略提出建议。</span>
+        <span class="en"><b>Outlook:</b> Weighting identified vivid storytelling as most important; ELM with a conformity mediator showed review sentiment (0.412), credibility (0.076), and uncertainty (0.610) positively drive re-sharing; recommendations cover script quality, heritage integration, professional service, social-media promotion, and pricing.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/comp-5.jpg" alt="电子商务三创赛全国二等奖证书"></div>
+          <div class="res-btns">
+            <a class="res-btn" href="https://365.kdocs.cn/l/cgEarVwIk0hi" target="_blank" rel="noopener">Certificate</a>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">云养一颗柿，链动一个村 —— 来太沟乡村振兴电商计划</span><span class="en">Cloud-Farming a Persimmon, Linking a Village: Rural E-commerce Plan</span></h3>
+      </div>
+      <div class="role-line">
+        <span class="tag"><span class="zh">核心成员</span><span class="en">Core Member</span></span>
+        <span class="tag time">2023.03 – 2023.07</span>
+        <span class="tag prize"><span class="zh">第十三届电子商务"创新、创意及创业"挑战赛</span><span class="en">13th E-commerce Innovation, Creativity &amp; Entrepreneurship Challenge</span></span><span class="tag gold"><span class="zh">全国二等奖</span><span class="en">National Second Prize</span></span>
+      </div>
+      <ul>
+        <li><span class="zh"><b>销售方案制定与执行：</b>主导销售方案撰写，提出社群接龙、云养成等 6 种模式；与团队共赴承德银窝沟乡来太沟村实地考察，完成 1 场西红柿专场直播；辅导当地种植户掌握直播操作与话术，使其后续可独立开播。</span>
+        <span class="en"><b>Sales plan &amp; execution:</b> Led the sales plan with 6 models incl. community group-buying and cloud-farming; field-visited Laitaigou Village (Yinwogou Township, Chengde) with the team and hosted a persimmon livestream; coached local farmers in streaming skills so they could later go live independently.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/comp-6.jpg" alt="生命科学竞赛全国三等奖证书"></div>
+          <div class="res-btns">
+            <a class="res-btn" href="https://365.kdocs.cn/l/cuhW3srYF0Pw" target="_blank" rel="noopener">Certificate</a>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">质能回环 —— 基于柱塞循环冲压的生物质能收集器</span><span class="en">Biomass Energy Collector Based on Plunger Cycle Stamping</span></h3>
+      </div>
+      <div class="role-line">
+        <span class="tag"><span class="zh">核心成员</span><span class="en">Core Member</span></span>
+        <span class="tag time">2023.05 – 2023.06</span>
+        <span class="tag prize"><span class="zh">第八届全国大学生生命科学竞赛</span><span class="en">8th National Life Sciences Competition</span></span><span class="tag gold"><span class="zh">全国三等奖</span><span class="en">National Third Prize</span></span>
+      </div>
+      <ul>
+        <li><span class="zh"><b>答辩视频制作：</b>运用剪映制作汇报视频，独立完成人像抠图、多轨道视频剪辑。</span>
+        <span class="en"><b>Defense video:</b> Produced the presentation video in Jianying, independently handling portrait cutout and multi-track editing.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/comp-7.png" alt="国家级大创项目结题证明" style="aspect-ratio:3/4;"></div>
+          <div class="res-btns">
+            <a class="res-btn" href="https://365.kdocs.cn/l/csBFWpUpuzP0" target="_blank" rel="noopener">PDF</a>
+            <a class="res-btn" href="https://365.kdocs.cn/l/cc7mB1igGmUn" target="_blank" rel="noopener">Certificate</a>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">Z 世代大学生社交媒体潮流爱好信息采纳行为影响因素研究</span><span class="en">Drivers of Gen-Z Information Adoption for Social-Media Trendy Hobbies</span></h3>
+      </div>
+      <div class="role-line">
+        <span class="tag hl"><span class="zh">国家级创新训练项目 | 项目负责人</span><span class="en">National Innovation Training Program | Project Leader</span></span>
+        <span class="tag time">2022.06 – 2023.06</span>
+        <span class="tag"><span class="zh">论文第一作者刊录《时代经贸》</span><span class="en">First-author paper published in Times Economy &amp; Trade</span></span>
+      </div>
+      <div class="paras">
+        <p><span class="zh">伴随着文化产品与服务消费的激增，社交媒体中出现了露营、滑雪、密室逃脱、潮玩等大量潮流爱好信息，而信息质量的参差不齐使得消费者采纳行为受到诸多因素的影响。本文综合借鉴 UTAUT 模型、TAM 模型和 IAM 模型构建相关行为影响因素模型，通过问卷调查方式展开实证分析，探讨 Z 世代青年群体对社交媒体潮流爱好信息采纳的行为影响因素。</span>
+        <span class="en">As consumption of cultural products and services surges, social media abounds with trendy-hobby content — camping, skiing, escape rooms, designer toys — yet uneven information quality means adoption behavior is shaped by many factors. Drawing on UTAUT, TAM, and IAM, this study built a behavioral influence model and ran an empirical survey on Gen-Z adoption of such information.</span></p>
+        <p><span class="zh">根据结构方程模型的拟合结果发现，感知熟悉性、信息质量正向影响中介变量感知有用性，社会影响负向影响中介变量感知有用性，信息质量、来源可信度与感知有用性均正向影响 Z 世代青年群体对社交媒体潮流爱好信息采纳的行为。</span>
+        <span class="en">SEM results show that perceived familiarity and information quality positively affect the mediator perceived usefulness, while social influence negatively affects it; information quality, source credibility, and perceived usefulness all positively drive Gen-Z adoption behavior.</span></p>
+        <p><span class="zh">最后基于本项目研究结论，针对信息接收方、信息发布方与信息监管方提出相应的启示建议。</span>
+        <span class="en">Based on these findings, the study offers implications for information receivers, publishers, and regulators.</span></p>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/comp-8.jpg" alt="河北省创新创业年会三等奖证书"></div>
+          <div class="res-btns">
+            <a class="res-btn" href="https://365.kdocs.cn/l/cvcHqAAizr2H" target="_blank" rel="noopener">Certificate</a>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">基于文本挖掘技术的移动学习平台持续使用行为影响因素研究</span><span class="en">Text-Mining Study of Continued Use of Mobile Learning Platforms</span></h3>
+      </div>
+      <div class="role-line">
+        <span class="tag"><span class="zh">国家级创新训练项目 | 核心成员</span><span class="en">National Innovation Training Program | Core Member</span></span>
+        <span class="tag time">2021.05 – 2022.05</span>
+      </div>
+      <ul>
+        <li><span class="zh"><b>数据采集与预处理：</b>利用 Python 爬虫抓取学习通在多平台应用商店的 1 万条在线评论，完成去重、去噪、Jieba 分词及 Wordcloud 词云可视化。</span>
+        <span class="en"><b>Data collection &amp; preprocessing:</b> Used Python crawlers to scrape 10,000 online reviews of Xuexitong from app stores across platforms, with deduplication, denoising, Jieba segmentation and WordCloud visualization.</span></li>
+        <li><span class="zh"><b>文本挖掘与聚类：</b>采用 TF-IDF 提取前 500 个特征词，通过 Word2vec 将词汇向量化，结合 Canopy+K-means 算法对特征词聚类，归纳出六大影响因素维度。</span>
+        <span class="en"><b>Text mining &amp; clustering:</b> Extracted the top 500 feature words via TF-IDF, vectorized them with Word2vec, and clustered the terms with the Canopy+K-means algorithm, summarizing six major influencing-factor dimensions.</span></li>
+        <li><span class="zh"><b>模型构建与验证：</b>基于 CCSI 与 Fornell 模型构建用户忠诚度影响因素模型，设计并回收有效问卷 175 份，通过信效度检验与结构方程模型验证假设。</span>
+        <span class="en"><b>Model building &amp; validation:</b> Built a user-loyalty influencing-factor model based on the CCSI and Fornell models; designed and collected 175 valid questionnaires, testing hypotheses via reliability/validity checks and structural equation modeling.</span></li>
+        <li><span class="zh"><b>成果与贡献：</b>识别出感知质量、品牌形象、感知价值、用户满意度、用户抱怨、用户忠诚度六大关键因素，为平台运营提出优化建议，项目成果形成学术论文。</span>
+        <span class="en"><b>Outcomes &amp; contributions:</b> Identified six key factors — perceived quality, brand image, perceived value, user satisfaction, user complaints and user loyalty — proposed optimization suggestions for platform operations, and developed the results into an academic paper.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/comp-9.png" alt="正交设计数据分析章节截图" style="aspect-ratio:3/4;"></div>
+          <div class="res-btns">
+            <a class="res-btn" href="https://365.kdocs.cn/l/cvVwo4ShAcnL" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">基于正交设计优选液体葡萄糖生产工艺</span><span class="en">Optimizing Liquid Glucose Production via Orthogonal Design</span></h3>
+      </div>
+      <div class="role-line">
+        <span class="tag time">2023.09 – 2023.10</span>
+        <span class="tag prize"><span class="zh">课程设计全系最高分</span><span class="en">Top Course Project Score in the Department</span></span>
+      </div>
+      <div class="paras">
+        <p><span class="zh">本项目旨在通过正交试验设计优化液体葡萄糖的生产工艺，提升产量并控制还原糖含量。研究选取粉浆浓度、粉浆酸度、稳压时间、工作压力四个因素，每个因素设置三个水平，采用 L₉(3⁴) 正交表进行试验，试验指标为产量和还原糖含量。通过极差分析和综合平衡法，确定各因素对指标的影响主次顺序：对产量影响最大的为工作压力，其次为稳压时间、粉浆浓度、粉浆酸度；对还原糖含量影响最大的为粉浆酸度。</span>
+        <span class="en">This project optimized liquid-glucose production via orthogonal design to raise yield while controlling reducing-sugar content. Four factors — slurry concentration, slurry acidity, pressure-holding time, and working pressure — were each set at three levels in an L₉(3⁴) design, with yield and reducing-sugar content as responses. Range analysis and comprehensive balancing ranked the factors: working pressure most affected yield, followed by holding time, concentration, and acidity; acidity most affected reducing-sugar content.</span></p>
+        <p><span class="zh">最终确定的最优工艺方案为：粉浆浓度 16%、粉浆酸度 2.0、稳压时间 5 分钟、工作压力 3.2×10⁵ Pa。此外，通过轮廓图分析，确认各因素之间无显著交互作用。该研究为液体葡萄糖的工业生产提供了科学依据，有助于提高生产效率与产品质量。</span>
+        <span class="en">The optimal process: 16% slurry concentration, acidity 2.0, 5 min pressure-holding, and 3.2×10⁵ Pa working pressure. Profile-plot analysis confirmed no significant interactions among factors. The study provides a scientific basis for industrial production, improving efficiency and product quality.</span></p>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 实习实践经历 ================= -->
+<section class="page" id="internships">
+  <div class="page-pad"><div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title"><span class="zh">实习实践经历</span><span class="en">Internship Experience</span></h2>
+      <span class="sec-en-t en-font">Internships</span>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/intern-1.png" alt="字节跳动实习证明"></div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">北京字节跳动科技有限公司</span><span class="en">ByteDance</span></h3>
+      </div>
+      <div class="role-line"><span class="tag hl"><span class="zh">数据科学实习生</span><span class="en">Data Science Intern</span></span><span class="tag time">2026.06 – 2026.09</span></div>
+      <ul>
+        <li><span class="zh"><b>数据看板搭建：</b>BI 工具独立搭建团队数据看板，服务 20 余人团队；AI 生成图表智能分析报告，配置监控与简报自动推送，形成"指标追踪—异常发现—结果触达"分析闭环。</span>
+        <span class="en"><b>Dashboards:</b> Independently built BI dashboards serving a 20+ person team; AI-generated chart analysis reports with automated monitoring and briefings, closing the loop of "tracking — anomaly detection — delivery".</span></li>
+        <li><span class="zh"><b>Magibook 建设：</b>从 0 到 1 搭建 Magibook 数据分析项目，支持 5 个子团队；编写 SQL/Python 脚本沉淀可复用分析流程，工作时间从 3 小时缩短至 1 小时。</span>
+        <span class="en"><b>Magibook:</b> Built the Magibook analytics project from 0 to 1 for 5 sub-teams; SQL/Python pipelines turned ad-hoc requests into reusable flows, cutting processing time from 3 hours to 1.</span></li>
+        <li><span class="zh"><b>业务运营支持：</b>服务携程、Agoda、Grab 等重点客户，覆盖 80+ 广告账户，支持千万美元级订单日常运营；每月输出 Agoda 竞品 SOV 分析。</span>
+        <span class="en"><b>Operations:</b> Served key clients incl. Trip.com, Agoda, and Grab across 80+ ad accounts, supporting daily operations of multimillion-dollar orders; monthly Agoda competitor SOV reports.</span></li>
+        <li><span class="zh"><b>素材分析（Viu）：</b>整理 312 条创意素材及转化率指标搭建数据库，构建 3 种分析框架与 Top-N 选优规则，产出"强冲突/悬念式 Hook + 本地化剧情"等可复用洞察，并以多维表格 + APP 实现产品化交付。</span>
+        <span class="en"><b>Creative analytics (Viu):</b> Built a database of 312 creatives with conversion metrics, designed 3 analytical frameworks and Top-N rules, surfaced reusable insights (strong-conflict/suspense hooks, localized plots), delivered via Airtable-style tables + app.</span></li>
+        <li><span class="zh"><b>AI 提效：</b>独立设计团队机器人（会议总结、群聊转发、To-Do 创建），将重复性工作转化为可复用 AI 工作流并撰写操作手册。</span>
+        <span class="en"><b>AI efficiency:</b> Designed a team chatbot (meeting summaries, group forwarding, to-do creation), converted repetitive work into reusable AI workflows, and wrote the user manual.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-placeholder">
+            <span class="zh">更新中</span>
+            <span class="en en-font">UPDATING</span>
+          </div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">广东泰迪智能科技股份有限公司</span><span class="en">Guangdong Teddy Intelligent Technology</span></h3>
+      </div>
+      <div class="role-line"><span class="tag hl"><span class="zh">数据分析实习生</span><span class="en">Data Analyst Intern</span></span><span class="tag time">2023.08 – 2023.12</span></div>
+      <ul>
+        <li><span class="zh"><b>校园消费行为分析：</b>清洗 519,367 条消费记录并关联 4,341 条学生信息；多维消费特征分析、食堂客流与运营分析；肘部法则 + K-Means 划分四类消费群体，辅助识别困难学生。</span>
+        <span class="en"><b>Campus spending analysis:</b> Cleaned 519,367 consumption records linked to 4,341 student profiles; multi-dimensional spending, canteen traffic, and operations analysis; elbow method + K-Means segmented four groups to help identify students in need.</span></li>
+        <li><span class="zh"><b>供应链经营分析：</b>围绕经营利润、回款、总收益进行时序分析；平台业绩量、客户数、库存等运营评估；透视表与可视化交付经营建议。</span>
+        <span class="en"><b>Supply-chain analytics:</b> Time-series analysis of profit, collections, and revenue; operational assessment of sales, clients, and inventory; pivot tables and visualizations with business recommendations.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="res-layout">
+        <div class="res-figure">
+          <div class="res-img zoom" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/intern-2.jpg" alt="童年一课线上支教上课照片"></div>
+        </div>
+        <div class="res-body">
+      <div class="card-top">
+        <h3><span class="zh">北京"童年一课"助学发展中心</span><span class="en">Beijing "One Class for Childhood" Education Center</span></h3>
+      </div>
+      <div class="role-line"><span class="tag hl"><span class="zh">支教老师</span><span class="en">Volunteer Teacher</span></span><span class="tag time">2021.03 – 2021.06</span></div>
+      <ul>
+        <li><span class="zh"><b>课程设计：</b>面向小学三、四年级学生开展线上美术课程，独立完成课程设计、备课授课与课后复盘；通过故事导入、色彩实验、小组互动和创意绘画讲授色彩知识。</span>
+        <span class="en"><b>Curriculum design:</b> Taught online art classes to 3rd–4th graders, independently handling curriculum design, lesson preparation, teaching, and reviews; delivered color theory through story-led introductions, color experiments, group activities, and creative painting.</span></li>
+        <li><span class="zh"><b>班级建设：</b>负责课堂组织与班级文化建设，设计课堂礼仪、小组协作活动、勋章激励制度及班徽文化，提升学生的课堂参与度、规则意识与团队协作能力。</span>
+        <span class="en"><b>Class building:</b> Managed classroom organization and class culture, designing classroom etiquette, group collaboration activities, badge incentives, and class-emblem culture to boost engagement, rule awareness, and teamwork.</span></li>
+      </ul>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 校园经历 ================= -->
+<section class="page" id="campus">
+  <div class="page-pad"><div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title"><span class="zh">校园经历</span><span class="en">Campus Leadership</span></h2>
+      <span class="sec-en-t en-font">Campus</span>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <h3><span class="zh">概率与统计系研究生党支部 · 党支部书记</span><span class="en">Graduate Party Branch of Probability &amp; Statistics · Branch Secretary</span></h3>
+        <span class="time">2025.09 – 2026.09</span>
+      </div>
+      <ul>
+        <li><span class="zh">组织开展党支部大会、党日活动、支委会等活动 20 余项；累计发展党员 3 名、转正 2 名。</span>
+        <span class="en">Organized 20+ branch activities; supervised the admission of 3 new members and confirmation of 2.</span></li>
+        <li><span class="zh">策划主持主题党日、理论学习、志愿服务等活动 20 余场，覆盖党员 20 余人，参与率 95% 以上。</span>
+        <span class="en">Planned and hosted 20+ themed events covering 20+ members with 95%+ attendance.</span></li>
+        <li><span class="zh">对接上级党组织、统筹支委分工，推动支部档案管理规范化、制度化。</span>
+        <span class="en">Coordinated with the higher party organization and standardized branch archives and procedures.</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <h3><span class="zh">班级 · 团支书</span><span class="en">Class · League Branch Secretary</span></h3>
+        <span class="time">2020.09 – 2024.06</span>
+      </div>
+      <ul>
+        <li><span class="zh">组织 30 余项支部活动、50 余场班级活动，团员参与率保持 100%；负责团员发展、推优入党等日常团务。</span>
+        <span class="en">Organized 30+ branch and 50+ class activities with 100% member participation; handled member development and party recommendations.</span></li>
+        <li><span class="zh">带领支部获评<b>「秦皇岛市优秀团支部」「河北省优秀班集体」</b>，连续 3 次获评<b>「校级五四红旗团支部」</b>。</span>
+        <span class="en">Led the branch to <b>"Outstanding League Branch of Qinhuangdao"</b> and the class to <b>"Outstanding Class of Hebei Province"</b>, plus 3× school-level <b>May Fourth Red Flag Branch</b>.</span></li>
+      </ul>
+      <div class="res-btns">
+        <a class="res-btn" href="https://365.kdocs.cn/l/cuFkUIKhe5rr" target="_blank" rel="noopener"><span class="zh">市级五四红旗团支部</span><span class="en">Municipal Red Flag Branch</span></a>
+        <a class="res-btn" href="https://365.kdocs.cn/l/cpTYTJji647Q" target="_blank" rel="noopener"><span class="zh">2023 校五四红旗团支部</span><span class="en">2023 School Red Flag Branch</span></a>
+        <a class="res-btn" href="https://365.kdocs.cn/l/cuRSPL7o5ccE" target="_blank" rel="noopener"><span class="zh">2021 五四红旗团支部</span><span class="en">2021 Red Flag Branch</span></a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <h3><span class="zh">大学生艺术团 · 舞蹈团团长</span><span class="en">University Art Troupe · Dance Troupe Leader</span></h3>
+      </div>
+      <ul>
+        <li><span class="zh">制定每周训练计划、主导 3 部舞蹈作品编排；统筹 30 余人排练时间与场地资源。</span>
+        <span class="en">Ran weekly training plans, choreographed 3 dance works, and coordinated schedules and venues for 30+ members.</span></li>
+        <li><span class="zh">带队参加河北省大学生舞蹈展演，荣获<b>省级二等奖</b>。</span>
+        <span class="en">Led the team to the Hebei Collegiate Dance Exhibition, winning the <b>provincial second prize</b>.</span></li>
+      </ul>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 所获荣誉 ================= -->
+<section class="page" id="honors">
+  <div class="page-pad"><div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title"><span class="zh">所获荣誉</span><span class="en">Honors &amp; Awards</span></h2>
+      <span class="sec-en-t en-font">Honors</span>
+    </div>
+
+    <div class="band-badge"><span class="zh">个人荣誉称号</span><span class="en">Individual Honors</span></div>
+    <div class="carousel-wrap">
+      <button class="car-btn prev" onclick="slideCar(this,-1)" aria-label="prev">‹</button>
+      <div class="carousel">
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/honor-1.jpg" alt="河北省2024届优秀毕业生证书"></div>
+          <h4><span class="zh">河北省2024届优秀毕业生</span><span class="en">Outstanding Graduate of Hebei Province</span></h4>
+          <p><i><span class="zh">2024</span><span class="en">2024</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cdu5DdyEsuU6" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/honor-2.jpg" alt="河北省2023-2024学年优秀学生干部证书"></div>
+          <h4><span class="zh">河北省2023-2024学年优秀学生干部</span><span class="en">Outstanding Student Cadre of Hebei Province</span></h4>
+          <p><i><span class="zh">2023 – 2024</span><span class="en">2023 – 2024</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cscrUSp7IUw0" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/honor-3.jpg" alt="2022年度十佳团支书证书"></div>
+          <h4><span class="zh">2022年度十佳团支书</span><span class="en">Top-10 League Branch Secretary</span></h4>
+          <p><i><span class="zh">全校仅10名 · 2022</span><span class="en">Only 10 schoolwide · 2022</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cpijU9uGGNY7" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/honor-4.jpg" alt="2021-2022学年优秀学生干部证书"></div>
+          <h4><span class="zh">2021-2022优秀学生干部</span><span class="en">Outstanding Student Cadre</span></h4>
+          <p><i><span class="zh">2021 – 2022</span><span class="en">2021 – 2022</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cmRgrrtIZcWv" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/honor-5.jpg" alt="2021年度艺术团先进个人证书"></div>
+          <h4><span class="zh">2021年度艺术团先进个人</span><span class="en">Art Troupe Individual Award</span></h4>
+          <p><i><span class="zh">2021</span><span class="en">2021</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cboiamooDJtq" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/honor-6.jpg" alt="2021年度优秀共青团干部证书"></div>
+          <h4><span class="zh">2021年度优秀共青团干部</span><span class="en">Outstanding Youth League Cadre</span></h4>
+          <p><i><span class="zh">2021</span><span class="en">2021</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/ct0WRqW9Qv9h" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/honor-7.jpg" alt="2020年度优秀共青团员证书"></div>
+          <h4><span class="zh">2020年度优秀共青团员</span><span class="en">Outstanding Youth League Member</span></h4>
+          <p><i><span class="zh">2020</span><span class="en">2020</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cueLAqwusA0N" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/honor-8.jpg" alt="2020-2021学年三好学生证书"></div>
+          <h4><span class="zh">2020-2021三好学生</span><span class="en">Merit Student</span></h4>
+          <p><i><span class="zh">2020 – 2021</span><span class="en">2020 – 2021</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/coF46dGsDfmE" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+      </div>
+      <button class="car-btn next" onclick="slideCar(this,1)" aria-label="next">›</button>
+    </div>
+
+    <div class="band-badge"><span class="zh">奖学金</span><span class="en">Scholarships</span></div>
+    <div class="carousel-wrap">
+      <button class="car-btn prev" onclick="slideCar(this,-1)" aria-label="prev">‹</button>
+      <div class="carousel">
+        <div class="hnr-card">
+          <div class="hnr-ph"><span class="zh">更新中</span><span class="en en-font">UPDATING</span></div>
+          <h4><span class="zh">北京邮电大学 · 2025年度二等奖学金</span><span class="en">BUPT · Second-Class Scholarship (2025)</span></h4>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-ph"><span class="zh">更新中</span><span class="en en-font">UPDATING</span></div>
+          <h4><span class="zh">北京邮电大学 · 2024年度新生奖学金</span><span class="en">BUPT · Freshman Scholarship (2024)</span></h4>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/sch-1.jpg" alt="2023-2024学年秋季学期一等奖学金证书"></div>
+          <h4><span class="zh">燕山大学 · 一等奖学金</span><span class="en">Yanshan Univ. · First-Class Scholarship</span></h4>
+          <p><i><span class="zh">2023-2024学年 秋季学期</span><span class="en">Fall, 2023–2024</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cui218cd9CrJ" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/sch-2.jpg" alt="2022-2023学年春季学期二等奖学金证书"></div>
+          <h4><span class="zh">燕山大学 · 二等奖学金</span><span class="en">Yanshan Univ. · Second-Class Scholarship</span></h4>
+          <p><i><span class="zh">2022-2023学年 春季学期</span><span class="en">Spring, 2022–2023</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cpokWnBxv69f" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/sch-3.jpg" alt="2022-2023学年秋季学期二等奖学金证书"></div>
+          <h4><span class="zh">燕山大学 · 二等奖学金</span><span class="en">Yanshan Univ. · Second-Class Scholarship</span></h4>
+          <p><i><span class="zh">2022-2023学年 秋季学期</span><span class="en">Fall, 2022–2023</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/crfOjzmUmeS2" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/sch-4.jpg" alt="2021-2022学年春季学期二等奖学金证书"></div>
+          <h4><span class="zh">燕山大学 · 二等奖学金</span><span class="en">Yanshan Univ. · Second-Class Scholarship</span></h4>
+          <p><i><span class="zh">2021-2022学年 春季学期</span><span class="en">Spring, 2021–2022</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cqj5ehgIzSbr" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/sch-5.jpg" alt="2021-2022学年秋季学期三等奖学金证书"></div>
+          <h4><span class="zh">燕山大学 · 三等奖学金</span><span class="en">Yanshan Univ. · Third-Class Scholarship</span></h4>
+          <p><i><span class="zh">2021-2022学年 秋季学期</span><span class="en">Fall, 2021–2022</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cddQ1JAmkZ7E" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/sch-6.jpg" alt="2020-2021学年春季学期一等奖学金证书"></div>
+          <h4><span class="zh">燕山大学 · 一等奖学金</span><span class="en">Yanshan Univ. · First-Class Scholarship</span></h4>
+          <p><i><span class="zh">2020-2021学年 春季学期</span><span class="en">Spring, 2020–2021</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/ccbTa2K8DXos" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/sch-7.jpg" alt="2020-2021学年秋季学期二等奖学金证书"></div>
+          <h4><span class="zh">燕山大学 · 二等奖学金</span><span class="en">Yanshan Univ. · Second-Class Scholarship</span></h4>
+          <p><i><span class="zh">2020-2021学年 秋季学期</span><span class="en">Fall, 2020–2021</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cs0T1swfJjdb" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+      </div>
+      <button class="car-btn next" onclick="slideCar(this,1)" aria-label="next">›</button>
+    </div>
+
+    <div class="band-badge"><span class="zh">文体竞赛</span><span class="en">Arts &amp; Culture Competitions</span></div>
+    <div class="carousel-wrap">
+      <button class="car-btn prev" onclick="slideCar(this,-1)" aria-label="prev">‹</button>
+      <div class="carousel">
+        <div class="hnr-card">
+          <div class="hnr-ph"><span class="zh">更新中</span><span class="en en-font">UPDATING</span></div>
+          <h4><span class="zh">燕山大学校园主持人大赛「十强」选手</span><span class="en">Top-10 Finalist, Yanshan Univ. Host Competition</span></h4>
+          <p><i><span class="zh">2024</span><span class="en">2024</span></i></p>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/art-1.jpg" alt="2023年燕山大学微党课二等奖证书"></div>
+          <h4><span class="zh">燕山大学微党课（二等奖）</span><span class="en">Micro Party Lecture · Second Prize</span></h4>
+          <p><i><span class="zh">2023</span><span class="en">2023</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/ct2Fo2cYJKyI" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/art-2.jpg" alt="2022年燕山大学网络文化节一等奖证书"></div>
+          <h4><span class="zh">燕山大学网络文化节（一等奖）</span><span class="en">Yanshan Online Culture Festival · First Prize</span></h4>
+          <p><i><span class="zh">2022</span><span class="en">2022</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cjVnl7MD6x0T" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/art-3.jpg" alt="2022河北省网络文化节三等奖证书"></div>
+          <h4><span class="zh">河北省网络文化节（三等奖）</span><span class="en">Hebei Online Culture Festival · Third Prize</span></h4>
+          <p><i><span class="zh">2022</span><span class="en">2022</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cuLtkxwsjPBh" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/art-4.jpg" alt="2021年燕山大学网络文化节一等奖证书"></div>
+          <h4><span class="zh">燕山大学网络文化节（一等奖）</span><span class="en">Yanshan Online Culture Festival · First Prize</span></h4>
+          <p><i><span class="zh">2021</span><span class="en">2021</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cpC1gEtmcmyD" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/art-5.jpg" alt="2021年燕山大学思政公开课三等奖证书"></div>
+          <h4><span class="zh">燕山大学思政公开课（三等奖）</span><span class="en">Ideological Open Course · Third Prize</span></h4>
+          <p><i><span class="zh">2021</span><span class="en">2021</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/caTsU6gpNDRe" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/art-6.jpg" alt="2020年12月燕山大学演讲比赛三等奖证书"></div>
+          <h4><span class="zh">燕山大学演讲比赛（三等奖）</span><span class="en">Yanshan Speech Contest · Third Prize</span></h4>
+          <p><i><span class="zh">2020年12月</span><span class="en">Dec 2020</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/chhleKTJqTP5" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/art-7.jpg" alt="2020年9月燕山大学演讲比赛三等奖证书"></div>
+          <h4><span class="zh">燕山大学演讲比赛（三等奖）</span><span class="en">Yanshan Speech Contest · Third Prize</span></h4>
+          <p><i><span class="zh">2020年9月</span><span class="en">Sep 2020</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/cfLKORGS7s8z" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+        <div class="hnr-card">
+          <div class="hnr-thumb" onclick="zoomImg(this.querySelector('img').src)" title="点击放大查看"><img src="assets/art-8.jpg" alt="2020河北省大学生艺术展演证书"></div>
+          <h4><span class="zh">河北省大学生艺术展演</span><span class="en">Hebei Collegiate Art Exhibition</span></h4>
+          <p><i><span class="zh">2020</span><span class="en">2020</span></i></p>
+          <div class="hnr-link"><a href="https://365.kdocs.cn/l/crCQDxrZLdjs" target="_blank" rel="noopener"><span class="zh">证书 ↗</span><span class="en">Certificate ↗</span></a></div>
+        </div>
+      </div>
+      <button class="car-btn next" onclick="slideCar(this,1)" aria-label="next">›</button>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 技能及其他 ================= -->
+<section class="page" id="skills">
+  <div class="page-pad"><div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <h2 class="sec-title"><span class="zh">技能及其他</span><span class="en">Skills</span></h2>
+      <span class="sec-en-t en-font">Skills</span>
+    </div>
+
+    <div class="skill-grid">
+      <div class="skill-card">
+        <div class="sk-head"><span class="zh">持有证书</span><span class="en">Certificates</span></div>
+        <div class="sk-row">
+          <span class="pill"><span class="zh">雅思 6.5</span><span class="en">IELTS 6.5</span></span>
+          <span class="pill"><span class="zh">高中数学教师资格证</span><span class="en">High-School Math Teacher Certificate</span></span>
+          <span class="pill"><span class="zh">C1 驾驶证</span><span class="en">C1 Driving License</span></span>
+          <span class="pill"><span class="zh">普通话二甲证书</span><span class="en">Mandarin Proficiency (Grade 2-A)</span></span>
+          <span class="pill"><span class="zh">CBDA 大数据分析工程师技能证书</span><span class="en">CBDA Big-Data Analyst Skill Certificate</span></span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-head"><span class="zh">编程与数据分析</span><span class="en">Programming &amp; Data Analysis</span></div>
+        <div class="sk-row">
+          <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">MATLAB</span>
+          <span class="pill">SPSS</span><span class="pill">SAS</span><span class="pill">AMOS</span><span class="pill">Origin</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-head"><span class="zh">统计与建模</span><span class="en">Statistics &amp; Modeling</span></div>
+        <div class="sk-row">
+          <span class="pill"><span class="zh">结构方程模型 SEM</span><span class="en">SEM</span></span>
+          <span class="pill"><span class="zh">强化学习 RL</span><span class="en">Reinforcement Learning</span></span>
+          <span class="pill"><span class="zh">神经网络</span><span class="en">Neural Networks</span></span>
+          <span class="pill">XGBoost</span><span class="pill"><span class="zh">K-Means 聚类</span><span class="en">K-Means Clustering</span></span><span class="pill"><span class="zh">回归分析</span><span class="en">Regression</span></span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-head"><span class="zh">产品与调研</span><span class="en">Product &amp; Research</span></div>
+        <div class="sk-row">
+          <span class="pill"><span class="zh">问卷设计</span><span class="en">Questionnaire Design</span></span>
+          <span class="pill"><span class="zh">用户研究</span><span class="en">User Research</span></span>
+          <span class="pill"><span class="zh">PRD 撰写</span><span class="en">PRD Writing</span></span>
+          <span class="pill"><span class="zh">竞品分析</span><span class="en">Competitive Analysis</span></span>
+          <span class="pill"><span class="zh">扎根理论</span><span class="en">Grounded Theory</span></span>
+          <span class="pill"><span class="zh">数据看板</span><span class="en">Dashboards</span></span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-head"><span class="zh">办公与设计</span><span class="en">Office &amp; Design</span></div>
+        <div class="sk-row">
+          <span class="pill"><span class="zh">Office 全家桶</span><span class="en">MS Office Suite</span></span>
+          <span class="pill"><span class="zh">Excel 数据看板</span><span class="en">Excel Dashboards</span></span>
+          <span class="pill"><span class="zh">PPT 视觉设计</span><span class="en">PPT Visual Design</span></span>
+          <span class="pill">Procreate</span>
+          <span class="pill"><span class="zh">视频剪辑</span><span class="en">Video Editing</span></span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-head"><span class="zh">其他特长</span><span class="en">Other Talents</span></div>
+        <div class="sk-row">
+          <span class="pill"><span class="zh">中国舞（12 级）</span><span class="en">Chinese Dance (Level 12)</span></span>
+          <span class="pill"><span class="zh">播音主持</span><span class="en">Broadcasting &amp; Hosting</span></span>
+          <span class="pill"><span class="zh">动漫制作</span><span class="en">Animation</span></span>
+          <span class="pill"><span class="zh">视频剪辑</span><span class="en">Video Editing</span></span>
+          <span class="pill"><span class="zh">日语入门</span><span class="en">Beginner Japanese</span></span>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 个人评价 ================= -->
+<section class="page" id="evaluation">
+  <div class="page-pad"><div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">08</span>
+      <h2 class="sec-title"><span class="zh">个人评价</span><span class="en">About Me</span></h2>
+      <span class="sec-en-t en-font">Evaluation</span>
+    </div>
+
+    <div class="eval-grid">
+      <div class="eval-item">
+        <b><span class="zh">抗压性强 · 执行力迅速</span><span class="en">Resilient · Fast Execution</span></b>
+        <span><span class="zh">一学期备战 5 项 A 类竞赛，3 项担任负责人，均获国家级奖项，高压下强执行、结果导向。</span>
+        <span class="en">Prepared 5 Class-A competitions in one semester, leading 3 of them — all won national awards. Strong execution under pressure, results-driven.</span></span>
+      </div>
+      <div class="eval-item">
+        <b><span class="zh">逻辑清晰 · 结构化思维</span><span class="en">Clear Logic · Structured Thinking</span></b>
+        <span><span class="zh">临危受命负责市场调查与分析大赛，1 个月内完成 6 个月的工作量，并获得全国一等奖。</span>
+        <span class="en">Took over the Market Survey &amp; Analysis Competition at short notice, completing 6 months of work within 1 month — and won the National First Prize.</span></span>
+      </div>
+      <div class="eval-item">
+        <b><span class="zh">数据驱动 · 善用 AI 提效</span><span class="en">Data-Driven · AI-Powered Efficiency</span></b>
+        <span><span class="zh">数据看板服务 20 余人的团队；跑通 2 个工作流、6 项自动化任务，善于使用 AI 提升效率。</span>
+        <span class="en">Dashboards serving a 20+ person team; built 2 workflows and 6 automation tasks, leveraging AI to boost efficiency.</span></span>
+      </div>
+      <div class="eval-item">
+        <b><span class="zh">组织协调强 · 责任担当</span><span class="en">Strong Coordinator · Responsible</span></b>
+        <span><span class="zh">团支书 4 年，组织 50+ 活动，带领班级获评省级优秀班集体，个人获评省级优秀学生干部。</span>
+        <span class="en">4 years as League Secretary organizing 50+ events; led the class to a provincial Outstanding Class and earned the provincial Outstanding Student Cadre award.</span></span>
+      </div>
+      <div class="eval-item">
+        <b><span class="zh">学习能力强 · 追求极致</span><span class="en">Fast Learner · Perfectionist</span></b>
+        <span><span class="zh">零基础 2 个月完成 500+ 帧动漫作品，获全国二等奖；课程设计全系最高分，精益求精。</span>
+        <span class="en">Created a 500+ frame animation from scratch in 2 months, winning the National Second Prize; top course-project score in the department.</span></span>
+      </div>
+      <div class="eval-item">
+        <b><span class="zh">沟通表达强 · 善于汇报</span><span class="en">Strong Communicator · Presenter</span></b>
+        <span><span class="zh">在校园主持人大赛中位列十强，代表学院参加校级演讲比赛，能清晰传递观点、推动合作。</span>
+        <span class="en">Top-10 finalist in the campus host competition and college representative in school-level speech contests; conveys ideas clearly and drives collaboration.</span></span>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:56px;font-size:15px;color:var(--sub);">
+      <span class="en-font" style="font-weight:900;color:var(--ink);">Enjoy Challenges! · Longtermism · Do One Thing Well</span><br>
+      I can do. I can do better.
+    </p>
+  </div></div>
+</section>
+
+<!-- ================= Footer ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-compact">
+      <div class="foot-big en-font">Let's talk<span class="dot">.</span></div>
+      <div class="foot-contact">
+        <span><span class="zh">邮箱：</span><span class="en">Email: </span><a href="mailto:liutinger0409@163.com">liutinger0409@163.com</a></span>
+        <span><span class="zh">微信：</span><span class="en">WeChat: </span>LYTRRRRRRRR</span>
+        <span><span class="zh">电话：</span><span class="en">Tel: </span>188-0113-6074</span>
+      </div>
+      <div class="foot-nav">
+        <a onclick="go('education')"><span class="zh">教育背景</span><span class="en">Education</span></a>
+        <a onclick="go('research')"><span class="zh">科研经历</span><span class="en">Research</span></a>
+        <a onclick="go('competitions')"><span class="zh">竞赛&amp;项目</span><span class="en">Competitions</span></a>
+        <a onclick="go('internships')"><span class="zh">实习实践</span><span class="en">Internships</span></a>
+        <a onclick="go('honors')"><span class="zh">所获荣誉</span><span class="en">Honors</span></a>
+      </div>
+    </div>
+
+    <div class="foot-qualities">
+      <h4><span class="zh">核心特质</span><span class="en">Highlights</span></h4>
+      <div class="fq-grid">
+        <div class="fq-item">
+          <b><span class="zh">抗压性强，执行力迅速</span><span class="en">Resilient &amp; Fast Execution</span></b>
+          <span><span class="zh">一学期备战 5 项 A 类竞赛，3 项担任负责人，均获国家级奖项，高压下强执行、结果导向。</span>
+          <span class="en">Prepared 5 Class-A competitions in one semester, leading 3 of them — all won national awards. Strong execution under pressure, results-driven.</span></span>
+        </div>
+        <div class="fq-item">
+          <b><span class="zh">逻辑清晰，结构化思维</span><span class="en">Clear Logic &amp; Structured Thinking</span></b>
+          <span><span class="zh">临危受命负责市场调查与分析大赛，1 个月内完成 6 个月的工作量，并获得全国一等奖。</span>
+          <span class="en">Took over the Market Survey &amp; Analysis Competition at short notice, completed 6 months of work within 1 month, and won the National First Prize.</span></span>
+        </div>
+        <div class="fq-item">
+          <b><span class="zh">数据驱动，善用 AI 提效</span><span class="en">Data-Driven &amp; AI-Empowered</span></b>
+          <span><span class="zh">数据看板服务 20 余人的团队；跑通 2 个工作流、6 项自动化任务，善于使用 AI 提升效率。</span>
+          <span class="en">Built dashboards serving a 20+ person team; established 2 workflows and 6 automation tasks, leveraging AI to boost efficiency.</span></span>
+        </div>
+        <div class="fq-item">
+          <b><span class="zh">组织协调强，责任担当</span><span class="en">Strong Coordination &amp; Responsibility</span></b>
+          <span><span class="zh">团支书 4 年，组织 50+ 活动，带领班级获评省级优秀班集体，个人获评省级优秀学生干部。</span>
+          <span class="en">League Branch Secretary for 4 years, organizing 50+ events; led the class to the provincial Outstanding Class and earned the provincial Outstanding Student Cadre award.</span></span>
+        </div>
+        <div class="fq-item">
+          <b><span class="zh">学习能力强，追求极致</span><span class="en">Fast Learner &amp; Pursuit of Excellence</span></b>
+          <span><span class="zh">零基础 2 个月完成 500+ 帧动漫作品，获全国二等奖；课程设计全系最高分，精益求精。</span>
+          <span class="en">Created a 500+ frame animation from scratch in 2 months, winning the National Second Prize; top course-project score in the department.</span></span>
+        </div>
+        <div class="fq-item">
+          <b><span class="zh">沟通表达强，善于汇报</span><span class="en">Strong Communication &amp; Presentation</span></b>
+          <span><span class="zh">在校园主持人大赛中位列十强，代表学院参加校级演讲比赛，能清晰传递观点、推动合作。</span>
+          <span class="en">Top-10 finalist in the campus host competition and college representative in school-level speech contests; conveys ideas clearly and drives collaboration.</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© 2026 Yuting Liu 刘郁婷 · Designed with ♥</span>
+      <span class="en-font">Statistics &amp; Optimization</span>
+    </div>
+  </div>
+</footer>
+
+<!-- 点击放大查看图片 -->
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
+  <img id="lightbox-img" alt="预览">
+</div>
+
+<script>
+  // ---------- 卡片带横向滑动 ----------
+  function slideCar(btn, dir){
+    const car = btn.parentNode.querySelector('.carousel');
+    car.scrollBy({left: dir * 500, behavior:'smooth'});
+  }
+
+  // ---------- 成绩单放大查看 ----------
+  function zoomImg(src){
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+
+  // ---------- 教育时间轴卡片：滚动交替出现 ----------
+  const eduIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        const cards = [...document.querySelectorAll('.edu-card')];
+        const idx = cards.indexOf(e.target);
+        e.target.style.transitionDelay = (idx * 0.12) + 's';
+        e.target.classList.add('in');
+        eduIO.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.18});
+  document.querySelectorAll('.edu-card').forEach(c => eduIO.observe(c));
+
+  // ---------- 教育卡片点击切换：点亮的置顶显示，另一张半透明下沉 ----------
+  function pickEdu(card){
+    const cards = [...document.querySelectorAll('.edu-card')];
+    // 再次点击已选中的卡片 → 恢复两张都完整显示
+    if (card.classList.contains('active')){
+      cards.forEach(c => c.classList.remove('active','dim'));
+      return;
+    }
+    cards.forEach(c => {
+      c.classList.toggle('active', c === card);
+      c.classList.toggle('dim',   c !== card);
+    });
+  }
+
+  // ---------- 页面切换 ----------
+  function go(name){
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById(name);
+    if (target) target.classList.add('active');
+    document.querySelectorAll('nav.menu a').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === name);
+    });
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+
+  // ---------- 语言切换 ----------
+  function setLang(lang){
+    document.body.classList.toggle('lang-en', lang === 'en');
+    document.getElementById('btnZh').classList.toggle('on', lang === 'zh');
+    document.getElementById('btnEn').classList.toggle('on', lang === 'en');
+    document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+    try { localStorage.setItem('site-lang', lang); } catch(e) {}
+  }
+  // 记住上次选择的语言
+  try {
+    const saved = localStorage.getItem('site-lang');
+    if (saved) setLang(saved);
+  } catch(e) {}
+</script>
+</body>
+</html>
